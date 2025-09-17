@@ -29,6 +29,7 @@ CALLER_GRAPH           = YES
 CLASS_DIAGRAMS         = YES
 DOT_IMAGE_FORMAT       = svg
 INTERACTIVE_SVG        = YES
+HTML_EXTRA_FILES       = docs/img/*.png
 
 #--------------------------------------------------------------------------- 
 # Configuration options related to the HTML output
