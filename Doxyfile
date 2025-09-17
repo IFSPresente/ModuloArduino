@@ -1,0 +1,38 @@
+#--------------------------------------------------------------------------- 
+# Project related configuration options
+#---------------------------------------------------------------------------
+
+PROJECT_NAME           = "ModuloArduino"
+PROJECT_BRIEF          = "Módulo Arduino - IFSPresente"
+OUTPUT_DIRECTORY       = docs
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+GENERATE_RTF           = NO
+
+#--------------------------------------------------------------------------- 
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+
+INPUT                  = src include .
+FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.ino
+RECURSIVE              = YES
+
+#--------------------------------------------------------------------------- 
+# Configuration options related to the diagrams
+#---------------------------------------------------------------------------
+
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 2
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_DIAGRAMS         = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+#--------------------------------------------------------------------------- 
+# Configuration options related to the HTML output
+#---------------------------------------------------------------------------
+
+GENERATE_TREEVIEW      = YES
+FULL_SIDEBAR           = YES
