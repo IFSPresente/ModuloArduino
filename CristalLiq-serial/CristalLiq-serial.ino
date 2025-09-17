@@ -46,6 +46,7 @@ Display dispArray[ROW] = {
                          };
 
 
+
 char strReply[80];
 char auxStr[80]; 
 unsigned long uptime;
