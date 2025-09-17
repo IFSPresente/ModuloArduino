@@ -1,5 +1,5 @@
 #--------------------------------------------------------------------------- 
-# Project related configuration options
+# Project related configuration options 
 #---------------------------------------------------------------------------
 
 PROJECT_NAME           = "ModuloArduino"
