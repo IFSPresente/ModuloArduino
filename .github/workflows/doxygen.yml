@@ -3,6 +3,7 @@ name: Build and Deploy Doxygen Docs
 on:
   push:
     branches: [ main ]   # sempre que atualizar a main, a doc é regenerada
+  workflow_dispatch:  # permite disparar manualmente
 
 jobs:
   docs:
