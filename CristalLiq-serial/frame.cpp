@@ -97,6 +97,10 @@ void SerialProtocol::receiveFrame()
 		     break;
 		   case RECEIVING:
 		     switch (rc) {
+				case '<':
+				  ndx = 0;
+				  machState = RECEIVING;
+				  break;
 			    case '>':
 				  machState = RECEIVED;
 				  receivedChars[ndx] = '\0';
