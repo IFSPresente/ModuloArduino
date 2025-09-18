@@ -1,3 +1,22 @@
+/**
+* @file CristalLiq-serial.ino
+* @brief O Arduino Nano cuida da exibição no Display de quatro linhas e do buzzer.
+* 
+* O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe  SerialProtocol.
+* São mensagens de quadro encapsuladas com os caracteres '<' e '> e que aceitam caracteres de escape para \<, \> e \\.
+* A semântica das mensagens é específica para a aplicação IFSPresente.
+* No IFSP podem há seis tipos de mensagens.
+* * <100,0,0>           --> PING                                             
+* * <200,TEXTO,TIMEOUT> --> TIME (Linha 0, para sala, data e hora)           
+* * <300,TEXTO,TIMEOUT> --> LECTURE_NAME (Linha 1, para nome da palestra)    
+* * <400,TEXTO,TIMEOUT> --> SPEAKER (Linha 2, para nome do palestrante)      
+* * <500,TEXTO,TIEMOUT> --> ATTENDEE (Linha 3, aponta participante registrado
+* * <600,0,0>           --> SUCCESS (Beep de sucesso no registro)            
+* * <601,0,0>           --> FAIL (Beep de falha no registro)                 
+
+* Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo.
+*/
+
 #include <Wire.h>              // Biblioteca utilizada para fazer a comunicação com o I2C
 #include <LiquidCrystal_I2C.h> // Biblioteca utilizada para fazer a comunicação com o display 20x4 
 #include "frame.h"
