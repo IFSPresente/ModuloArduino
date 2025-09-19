@@ -33,7 +33,7 @@
  * @section arch_sec Arquitetura
  * O sistema é dividido em:
  * - `CristalLiq-serial.ino`: ponto de entrada e lógica principal.
- * - `frame.h/.cpp`: implementação da classe Frame.
+ * - `frame.h/.cpp`: implementação da classe SerialProtocol.
  * - `SerialProtocol`: abstração do protocolo de comunicação.
  *
  * @section usage_sec Uso
