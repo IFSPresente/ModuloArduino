@@ -16,6 +16,7 @@ GENERATE_RTF           = NO
 
 INPUT                  = src include .
 FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.ino
+EXTENSION_MAPPING      = ino=C++
 RECURSIVE              = YES
 
 #--------------------------------------------------------------------------- 
