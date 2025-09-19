@@ -37,7 +37,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"CristalLiq-serial_8ino.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

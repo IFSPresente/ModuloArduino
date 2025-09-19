@@ -1,11 +1,14 @@
 var NAVTREEINDEX0 =
 {
+"CristalLiq-serial_8ino.html":[1,0,0,0],
 "annotated.html":[0,0],
-"classSerialProtocol.html":[0,0,0],
+"classSerialProtocol.html":[0,0,2],
 "classes.html":[0,1],
 "dir_64032a4eeedb86ab5d4dd10c6c32e421.html":[1,0,0],
 "files.html":[1,0],
-"frame_8h_source.html":[1,0,0,0],
+"frame_8h_source.html":[1,0,0,1],
 "index.html":[],
-"pages.html":[]
+"pages.html":[],
+"structDisplay.html":[0,0,0],
+"structProtocolMessage.html":[0,0,1]
 };
