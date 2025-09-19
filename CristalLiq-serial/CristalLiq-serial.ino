@@ -1,13 +1,13 @@
 /**
 * @file CristalLiq-serial.ino
-* @brief O Arduino Nano cuida da exibição no Display de quatro linhas e do buzzer.
+* @brief O Arduino Nano gerencia tanto a exibição no Display de quatro linhas quanto o buzzer.
 * 
 * ![Máquina de Estados](MaquinaEstadoProtocolo.png) 
 *
 * O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe  SerialProtocol.
-* São mensagens de quadro encapsuladas com os caracteres '<' e '> e que aceitam caracteres de escape para \<, \> e \\.
+* São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para '\<', '\>' e '\\'.
 * A semântica das mensagens é específica para a aplicação IFSPresente.
-* No IFSP podem há seis tipos de mensagens.
+* Há seis tipos de mensagens.
 * * <100,0,0>           --> PING                                             
 * * <200,TEXTO,TIMEOUT> --> TIME (Linha 0, para sala, data e hora)           
 * * <300,TEXTO,TIMEOUT> --> LECTURE_NAME (Linha 1, para nome da palestra)    
