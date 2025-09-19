@@ -2,8 +2,6 @@
 * @file CristalLiq-serial.ino
 * @brief O Arduino Nano gerencia tanto a exibição no Display de quatro linhas quanto o buzzer.
 * 
-* ![Máquina de Estados](MaquinaEstadoProtocolo.png) 
-*
 * O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe  SerialProtocol.
 * São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para '\<', '\>' e '\\'.
 * A semântica das mensagens é específica para a aplicação IFSPresente.
@@ -44,7 +42,7 @@
  * 3. Estabeleça a comunicação serial via USB com a TV-Box.
  *
  * @section img_sec Diagrama
- * ![Arquitetura do Módulo](img/arquitetura.png)
+ * !![Máquina de Estados](MaquinaEstadoProtocolo.png) 
  */
 
 #include <Wire.h>              // Biblioteca utilizada para fazer a comunicação com o I2C
