@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ModuloArduino: Main Page</title>
+<title>ModuloArduino: Módulo Arduino - CristalLiq</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,10 +89,38 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">ModuloArduino Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Módulo Arduino - CristalLiq </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
+Introdução</h1>
+<p>Este projeto implementa a comunicação entre o display de cristal líquido e o Arduino via porta serial, utilizando a classe <code>Frame</code> para estruturar mensagens.</p>
+<h1><a class="anchor" id="features_sec"></a>
+Funcionalidades</h1>
+<ul>
+<li>Exibição de mensagens em display LCD 4 linhas.</li>
+<li>Emissão de sinais sonoros via buzzer.</li>
+<li>Recepção de comandos da TV-Box através de protocolo serial.</li>
+</ul>
+<h1><a class="anchor" id="arch_sec"></a>
+Arquitetura</h1>
+<p>O sistema é dividido em:</p><ul>
+<li><code><a class="el" href="CristalLiq-serial_8ino.html" title="O Arduino Nano cuida da exibição no Display de quatro linhas e do buzzer.">CristalLiq-serial.ino</a></code>: ponto de entrada e lógica principal.</li>
+<li><code><a class="el" href="frame_8h_source.html">frame.h</a>/.cpp</code>: implementação da classe Frame.</li>
+<li><code><a class="el" href="classSerialProtocol.html">SerialProtocol</a></code>: abstração do protocolo de comunicação.</li>
+</ul>
+<h1><a class="anchor" id="usage_sec"></a>
+Uso</h1>
+<ol type="1">
+<li>Carregue o código no Arduino Nano.</li>
+<li>Conecte o display LCD e o buzzer conforme o diagrama de hardware.</li>
+<li>Estabeleça a comunicação serial via USB com a TV-Box.</li>
+</ol>
+<h1><a class="anchor" id="img_sec"></a>
+Diagrama</h1>
+<p><img src="img/arquitetura.png" alt="Arquitetura do Módulo" class="inline"/> </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

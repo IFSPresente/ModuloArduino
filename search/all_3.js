@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['serialprotocol_0',['SerialProtocol',['../classSerialProtocol.html',1,'']]]
+  ['funcionalidades_0',['Funcionalidades',['../index.html#features_sec',1,'']]]
 ];
