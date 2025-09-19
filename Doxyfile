@@ -30,6 +30,7 @@ CALLER_GRAPH           = YES
 CLASS_DIAGRAMS         = YES
 DOT_IMAGE_FORMAT       = svg
 INTERACTIVE_SVG        = YES
+IMAGE_PATH             = docs/img
 HTML_EXTRA_FILES       = docs/img/*.png docs/img/*.jpg
 
 #--------------------------------------------------------------------------- 
