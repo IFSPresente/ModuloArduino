@@ -208,7 +208,11 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>O Arduino Nano cuida da exibição no <a class="el" href="structDisplay.html">Display</a> de quatro linhas e do buzzer. </p>
-<p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt; e que aceitam caracteres de escape para &lt;, &gt; e \. A semântica das mensagens é específica para a aplicação IFSPresente. No IFSP podem há seis tipos de mensagens.</p><ul>
+<div class="image">
+<img src="MaquinaEstadoProtocolo.png" alt=""/>
+<div class="caption">
+Máquina de Estados</div></div>
+    <p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt; e que aceitam caracteres de escape para &lt;, &gt; e \. A semântica das mensagens é específica para a aplicação IFSPresente. No IFSP podem há seis tipos de mensagens.</p><ul>
 <li>&lt;100,0,0&gt; --&gt; PING <br  />
 </li>
 <li>&lt;200,TEXTO,TIMEOUT&gt; --&gt; TIME (Linha 0, para sala, data e hora) <br  />
