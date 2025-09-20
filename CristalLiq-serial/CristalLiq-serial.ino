@@ -1,4 +1,30 @@
 /**
+ * @mainpage Módulo Arduino - CristalLiq
+ *
+ * @section intro_sec Introdução
+ * Este módulo implementa a comunicação entre o _display_ de cristal líquido
+ * e o Arduino via porta serial sobre USB, utilizando a classe `SerialProtocol` para cuidar da transmissão dos quadros.
+ *
+ * @section features_sec Funcionalidades
+ * - Exibição de mensagens em _display_ LCD de 4 linhas.
+ * - Emissão de sinais sonoros via _buzzer_.
+ * - Recepção de comandos da TV-Box por meio  de protocolo serial sobre USB.
+ *
+ * @section arch_sec Arquitetura
+ * O sistema é dividido em:
+ * - `CristalLiq-serial.ino`: ponto de entrada e lógica principal.
+ * - `frame.h/.cpp`: implementação da classe SerialProtocol.
+ * - `SerialProtocol`: abstração do protocolo de comunicação.
+ *
+ * @section usage_sec Uso
+ * 1. Carregue o código no Arduino Nano com o Arduino IDE.
+ * 2. Conecte o _display_ LCD de 4 linhas e o _buzzer_ conforme o diagrama de hardware.
+ *
+ * @section img_sec Diagrama
+ * !![Máquina de Estados](MaquinaEstadoProtocolo.png) 
+ */
+
+/**
 * @file CristalLiq-serial.ino
 * @brief O Arduino Nano gerencia tanto a exibição no Display de quatro linhas quanto o buzzer.
 * 
@@ -17,33 +43,7 @@
 * Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo.
 */
 
-/**
- * @mainpage Módulo Arduino - CristalLiq
- *
- * @section intro_sec Introdução
- * Este projeto implementa a comunicação entre o display de cristal líquido
- * e o Arduino via porta serial, utilizando a classe `Frame` para estruturar
- * mensagens.
- *
- * @section features_sec Funcionalidades
- * - Exibição de mensagens em display LCD 4 linhas.
- * - Emissão de sinais sonoros via buzzer.
- * - Recepção de comandos da TV-Box através de protocolo serial.
- *
- * @section arch_sec Arquitetura
- * O sistema é dividido em:
- * - `CristalLiq-serial.ino`: ponto de entrada e lógica principal.
- * - `frame.h/.cpp`: implementação da classe SerialProtocol.
- * - `SerialProtocol`: abstração do protocolo de comunicação.
- *
- * @section usage_sec Uso
- * 1. Carregue o código no Arduino Nano.
- * 2. Conecte o display LCD e o buzzer conforme o diagrama de hardware.
- * 3. Estabeleça a comunicação serial via USB com a TV-Box.
- *
- * @section img_sec Diagrama
- * !![Máquina de Estados](MaquinaEstadoProtocolo.png) 
- */
+
 
 #include <Wire.h>              // Biblioteca utilizada para fazer a comunicação com o I2C
 #include <LiquidCrystal_I2C.h> // Biblioteca utilizada para fazer a comunicação com o display 20x4 
