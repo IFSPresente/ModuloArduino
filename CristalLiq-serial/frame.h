@@ -7,10 +7,6 @@
 
 enum machineState {START, RECEIVING, ESCAPE, RECEIVED};
 
-//extern byte machState;
-//extern char receivedChars[];
-//void receiveFrame();
-
 class SerialProtocol {
 	public:
 		byte machState;
