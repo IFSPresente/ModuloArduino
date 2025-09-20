@@ -6,19 +6,20 @@
  * e o Arduino via porta serial sobre USB, utilizando a classe `SerialProtocol` para cuidar da transmissão dos quadros.
  *
  * @section features_sec Funcionalidades
- * - Exibição de mensagens em _display_ LCD de 4 linhas.
- * - Emissão de sinais sonoros via _buzzer_.
  * - Recepção de comandos da TV-Box por meio  de protocolo serial sobre USB.
+ * - Exibição das mensagens no _display_ LCD de 4 linhas.
+ * - Emissão de sinais sonoros via _buzzer_.
+ * - Ajuste e leitura do RTC.
  *
  * @section arch_sec Arquitetura
  * O sistema é dividido em:
  * - `CristalLiq-serial.ino`: ponto de entrada e lógica principal.
  * - `frame.h/.cpp`: implementação da classe SerialProtocol.
- * - `SerialProtocol`: abstração do protocolo de comunicação.
+ * - `SerialProtocol`: protocolo de comunicação _master/slave_ por serial sobre USB.
  *
  * @section usage_sec Uso
- * 1. Carregue o código no Arduino Nano com o Arduino IDE.
- * 2. Conecte o _display_ LCD de 4 linhas e o _buzzer_.
+ * 1. Carregar o código no Arduino Nano com o Arduino IDE.
+ * 2. Conectar o _display_ LCD de 4 linhas, o _buzzer_ e o RTC.
  *
  * @section img_sec Máquina de Estado do protocolo
  * !![Máquina de Estados](MaquinaEstadoProtocolo.png) 
@@ -26,10 +27,10 @@
 
 /**
 * @file CristalLiq-serial.ino
-* @brief O Arduino Nano gerencia tanto a exibição no Display de quatro linhas quanto o buzzer.
+* @brief O Arduino Nano gerencia a exibição no Display de quatro linhas, o acionamento do _buzzer_ e o ajuste e leitura do RTC.
 * 
 * O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe  SerialProtocol.
-* São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para '\<', '\>' e '\\'.
+* São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para: '\<', '\>' e '\\'.
 * A semântica das mensagens é específica para a aplicação IFSPresente.
 * Há seis tipos de mensagens.
 * * <100,0,0>           --> PING                                             
@@ -38,16 +39,15 @@
 * * <400,TEXTO,TIMEOUT> --> SPEAKER (Linha 2, para nome do palestrante)      
 * * <500,TEXTO,TIEMOUT> --> ATTENDEE (Linha 3, aponta participante registrado
 * * <600,0,0>           --> SUCCESS (Beep de sucesso no registro)            
-* * <601,0,0>           --> FAIL (Beep de falha no registro)                 
-
+* * <601,0,0>           --> FAIL (Beep de falha no registro)
+* * <700,HH:MM:SS,0>    --> SETTIME (Define a hora do RTC)
+* * <701,0,0>           --> GETTIME (Recebe a hora do RTC)              
 * Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo.
 */
 
-
-
 #include <Wire.h>              // Biblioteca utilizada para fazer a comunicação com o I2C
 #include <LiquidCrystal_I2C.h> // Biblioteca utilizada para fazer a comunicação com o display 20x4 
-#include "frame.h"
+#include "frame.h"             // Implementação da classe SerialProtocol
 
 #define PING         100
 #define TIME         200
@@ -56,6 +56,8 @@
 #define ATTENDEE     500
 #define SUCCESS      600
 #define FAIL         601
+#define SETTIME      700
+#define GETTIME      701
 
 #define BUZZER      2           // Pino digital ligado ao buzzer
 
@@ -64,8 +66,8 @@
 #define ADDRESS  0x27           // Serve para definir o endereço do display.
 #define DISPLAY_UPDATE_DELAY 500
 #define LOOP_DELAY            10
-#define KEEP_AT_ZERO          1
-#define KEEP_AT_LAST          1
+#define KEEP_AT_ZERO           1
+#define KEEP_AT_LAST           1
 
 struct ProtocolMessage {
   int code;
