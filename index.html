@@ -99,22 +99,23 @@ Introdução</h1>
 <h1><a class="anchor" id="features_sec"></a>
 Funcionalidades</h1>
 <ul>
-<li>Exibição de mensagens em <em>display</em> LCD de 4 linhas.</li>
-<li>Emissão de sinais sonoros via <em>buzzer</em>.</li>
 <li>Recepção de comandos da TV-Box por meio de protocolo serial sobre USB.</li>
+<li>Exibição das mensagens no <em>display</em> LCD de 4 linhas.</li>
+<li>Emissão de sinais sonoros via <em>buzzer</em>.</li>
+<li>Ajuste e leitura do RTC.</li>
 </ul>
 <h1><a class="anchor" id="arch_sec"></a>
 Arquitetura</h1>
 <p>O sistema é dividido em:</p><ul>
-<li><code><a class="el" href="CristalLiq-serial_8ino.html" title="O Arduino Nano gerencia tanto a exibição no Display de quatro linhas quanto o buzzer.">CristalLiq-serial.ino</a></code>: ponto de entrada e lógica principal.</li>
+<li><code><a class="el" href="CristalLiq-serial_8ino.html" title="O Arduino Nano gerencia a exibição no Display de quatro linhas, o acionamento do buzzer e o ajuste e ...">CristalLiq-serial.ino</a></code>: ponto de entrada e lógica principal.</li>
 <li><code><a class="el" href="frame_8h_source.html">frame.h</a>/.cpp</code>: implementação da classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>.</li>
-<li><code><a class="el" href="classSerialProtocol.html">SerialProtocol</a></code>: abstração do protocolo de comunicação.</li>
+<li><code><a class="el" href="classSerialProtocol.html">SerialProtocol</a></code>: protocolo de comunicação <em>master/slave</em> por serial sobre USB.</li>
 </ul>
 <h1><a class="anchor" id="usage_sec"></a>
 Uso</h1>
 <ol type="1">
-<li>Carregue o código no Arduino Nano com o Arduino IDE.</li>
-<li>Conecte o <em>display</em> LCD de 4 linhas e o <em>buzzer</em>.</li>
+<li>Carregar o código no Arduino Nano com o Arduino IDE.</li>
+<li>Conectar o <em>display</em> LCD de 4 linhas, o <em>buzzer</em> e o RTC.</li>
 </ol>
 <h1><a class="anchor" id="img_sec"></a>
 Máquina de Estado do protocolo</h1>
