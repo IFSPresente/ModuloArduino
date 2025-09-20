@@ -95,13 +95,13 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
 Introdução</h1>
-<p>Este projeto implementa a comunicação entre o display de cristal líquido e o Arduino via porta serial, utilizando a classe <code>Frame</code> para estruturar mensagens.</p>
+<p>Este módulo implementa a comunicação entre o <em>display</em> de cristal líquido e o Arduino via porta serial sobre USB, utilizando a classe <code><a class="el" href="classSerialProtocol.html">SerialProtocol</a></code> para cuidar da transmissão dos quadros.</p>
 <h1><a class="anchor" id="features_sec"></a>
 Funcionalidades</h1>
 <ul>
-<li>Exibição de mensagens em display LCD 4 linhas.</li>
-<li>Emissão de sinais sonoros via buzzer.</li>
-<li>Recepção de comandos da TV-Box através de protocolo serial.</li>
+<li>Exibição de mensagens em <em>display</em> LCD de 4 linhas.</li>
+<li>Emissão de sinais sonoros via <em>buzzer</em>.</li>
+<li>Recepção de comandos da TV-Box por meio de protocolo serial sobre USB.</li>
 </ul>
 <h1><a class="anchor" id="arch_sec"></a>
 Arquitetura</h1>
@@ -113,9 +113,8 @@ Arquitetura</h1>
 <h1><a class="anchor" id="usage_sec"></a>
 Uso</h1>
 <ol type="1">
-<li>Carregue o código no Arduino Nano.</li>
-<li>Conecte o display LCD e o buzzer conforme o diagrama de hardware.</li>
-<li>Estabeleça a comunicação serial via USB com a TV-Box.</li>
+<li>Carregue o código no Arduino Nano com o Arduino IDE.</li>
+<li>Conecte o <em>display</em> LCD de 4 linhas e o <em>buzzer</em> conforme o diagrama de hardware.</li>
 </ol>
 <h1><a class="anchor" id="img_sec"></a>
 Diagrama</h1>
