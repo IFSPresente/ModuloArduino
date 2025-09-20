@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uso_0',['Uso',['../index.html#usage_sec',1,'']]]
+  ['serialprotocol_0',['SerialProtocol',['../classSerialProtocol.html',1,'']]]
 ];

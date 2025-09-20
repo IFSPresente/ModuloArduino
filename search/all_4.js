@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['introdução_0',['Introdução',['../index.html#intro_sec',1,'']]]
+  ['funcionalidades_0',['Funcionalidades',['../index.html#features_sec',1,'']]]
 ];

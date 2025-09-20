@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['funcionalidades_0',['Funcionalidades',['../index.html#features_sec',1,'']]]
+  ['estado_20do_20protocolo_0',['Máquina de Estado do protocolo',['../index.html#img_sec',1,'']]]
 ];

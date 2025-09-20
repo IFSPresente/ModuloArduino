@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['serialprotocol_0',['SerialProtocol',['../classSerialProtocol.html',1,'']]]
+  ['protocolmessage_0',['ProtocolMessage',['../structProtocolMessage.html',1,'']]],
+  ['protocolo_1',['Máquina de Estado do protocolo',['../index.html#img_sec',1,'']]]
 ];
