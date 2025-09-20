@@ -18,9 +18,9 @@
  *
  * @section usage_sec Uso
  * 1. Carregue o código no Arduino Nano com o Arduino IDE.
- * 2. Conecte o _display_ LCD de 4 linhas e o _buzzer_ conforme o diagrama de hardware.
+ * 2. Conecte o _display_ LCD de 4 linhas e o _buzzer_.
  *
- * @section img_sec Diagrama
+ * @section img_sec Máquina de Estado do protocolo
  * !![Máquina de Estados](MaquinaEstadoProtocolo.png) 
  */
 
