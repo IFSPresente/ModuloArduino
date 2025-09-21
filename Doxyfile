@@ -9,7 +9,7 @@ GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
 GENERATE_MAN           = NO
 GENERATE_RTF           = NO
-
+DOXYFILE_ENCODING      = UTF-8
 #--------------------------------------------------------------------------- 
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
