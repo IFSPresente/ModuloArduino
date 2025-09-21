@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['funcionalidades_0',['Funcionalidades',['../index.html#features_sec',1,'']]]
+  ['fail_0',['FAIL',['../CristalLiq-serial_8ino.html#abb508ea8227673f419e9fe3a86c30d8e',1,'CristalLiq-serial.ino']]],
+  ['funcionalidades_1',['Funcionalidades',['../index.html#features_sec',1,'']]]
 ];
