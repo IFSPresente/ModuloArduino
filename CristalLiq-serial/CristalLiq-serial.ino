@@ -32,17 +32,22 @@
 * O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe  SerialProtocol.
 * São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para: '\<', '\>' e '\\'.
 * A semântica das mensagens é específica para a aplicação IFSPresente.
-* Há seis tipos de mensagens.
-* * <100,0,0>            &rarr;  PING                                             
-* * <200,TEXTO,TIMEOUT>  &rarr;  TIME (Linha 0, para sala, data e hora)           
-* * <300,TEXTO,TIMEOUT>  &rarr;  LECTURE_NAME (Linha 1, para nome da palestra)    
-* * <400,TEXTO,TIMEOUT>  &rarr;  SPEAKER (Linha 2, para nome do palestrante)      
-* * <500,TEXTO,TIEMOUT>  &rarr;  ATTENDEE (Linha 3, aponta participante registrado
-* * <600,0,0>            &rarr;  SUCCESS (Beep de sucesso no registro)            
-* * <601,0,0>            &rarr;  FAIL (Beep de falha no registro)
-* * <700,HH:MM:SS,0>     &rarr;  SETTIME (Define a hora do RTC)
-* * <701,0,0>            &rarr;  GETTIME (Recebe a hora do RTC)     
-*         
+* Há nove tipos de mensagens emitidas pela TV-Box.
+* * <100|0|0>                        &rarr;  PING                                             
+* * <200|TEXTO|TIMEOUT>              &rarr;  TIME (Linha 0, para sala, data e hora)           
+* * <300|TEXTO|TIMEOUT>              &rarr;  LECTURE_NAME (Linha 1, para nome da palestra)    
+* * <400|TEXTO|TIMEOUT>              &rarr;  SPEAKER (Linha 2, para nome do palestrante)      
+* * <500|TEXTO|TIEMOUT>              &rarr;  ATTENDEE (Linha 3, aponta participante registrado
+* * <600|0|0>                        &rarr;  SUCCESS (Beep de sucesso no registro)            
+* * <601|0|0>                        &rarr;  FAIL (Beep de falha no registro)
+* * <700|YYYY:MM:DD:HH:MM:SS|0>      &rarr;  SETTIME (Define a hora do RTC)
+* * <701|0|0>                        &rarr;  GETTIME (Recebe a hora do RTC)     
+*
+* O Arduino responde com três tipos de mensagens.
+* * <001|uptime em milissegundos|versão de firmware>  &rarr; Resposta ao ping 
+* * <003|YYYY:MM:DD:HH:MM:SS|temperatura>             &rarr; Resposta ao gettime                     
+* * <002|OK|>                                         &rarr; Resposta aos demais comandos 
+*                 
 * Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo.
 */
 
@@ -84,25 +89,64 @@
 #define LOOP_DELAY            10    /**< Tempo em que o loop principal do código do Arduino dorme à espera de uma mensagem */
 #define KEEP_AT_ZERO           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de iniciar o _scroll_ */
 #define KEEP_AT_LAST           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de reiniciar o _scroll_ */
+/** @} */
 
+/**
+ * @struct ProtocolMessage
+ * @brief Representa a decodificação de uma mensagem recebida.
+ *
+ * Uma mensagem num quadro vem em três campos separados por '|', <code|message|TTL>.
+ */
 struct ProtocolMessage {
-  int code;
-  int TTL;
-  char message[MAX_STRING+1];
+  int code;                     /**< Código do serviço solicitado. */
+  int TTL;                      /**< Tempo de vida para mensagens que são exibidas no _display_. */
+  char message[MAX_STRING+1];   /**< Mensagem. */
 };
+
+/**
+ * @var ProtocolMessage netMessage
+ * @brief Mantém uma única mensagem recebida.
+ */
 ProtocolMessage netMessage;
 
+/**
+ * @struct Display
+ * @brief Representa o estado de uma linha do display LCD.
+ *
+ * Esta estrutura guarda a mensagem principal, a mensagem padrão, a parte da
+ * mensagem que deve ser impressa no momento, além de informações de tamanho,
+ * posição e tempo de vida (TTL).
+ */
 struct Display {
-  char message[MAX_STRING + 1];
-  char defaultMessage[MAX_STRING + 1];
-  char toPrint[COL+1];
-  int messageSize;
-  int defaultMessageSize;
-  int startPosition;
-  byte keepAtZeroPosition;
-  unsigned long TTL;
+  char message[MAX_STRING + 1];        /**< Mensagem atual a ser exibida. */
+  char defaultMessage[MAX_STRING + 1]; /**< Mensagem padrão quando nenhuma outra estiver ativa. */
+  char toPrint[COL+1];                 /**< Parte da mensagem que é impressa no display num dado momento. */
+  int messageSize;                     /**< Tamanho da mensagem atual. */
+  int defaultMessageSize;              /**< Tamanho da mensagem padrão. */
+  int startPosition;                   /**< Posição inicial na mensagem a partir da qual imprime-se no display. */
+  byte keepAtZeroPosition;             /**< Quando o trecho inicial da mensagem está sendo impresso, permanece por um tempo maior nesse estado. */
+  unsigned long TTL;                    /**< Tempo de vida da mensagem em milissegundos. Após esse período, retorna à mensagem _default_ */
 };
 
+/**
+ * @var Display dispArray[ROW]
+ * @brief Informações para as quatro linhas do Display.
+ *
+ * Contém as quatro linhas do display LCD. Cada posição tem:
+ * - Mensagem atual (`message`)
+ * - Mensagem padrão (`defaultMessage`)
+ * - Texto a imprimir (`toPrint`)
+ * - Tamanho da mensagem (ajustado em `setup()`)
+ * - Tamanho da mensagem padrão (ajustado em `setup()`)
+ * - Posição inicial da string a partir da onde imprime no display
+ * - Tempo de vida (TTL) de impressão da mensagem
+ *
+ * Inicialmente preenchido com mensagens padrão do sistema:
+ * - Linha 0 → "IFSPresente"
+ * - Linha 1 → "Local Disponivel"
+ * - Linha 2 → "Sem reserva de palestrante"
+ * - Linha 3 → "Aguardando Registro"
+ */
 Display dispArray[ROW] = {
                           {"", "IFSPresente", "", 0, 0, 0, KEEP_AT_ZERO, 0},
                           {"", "Local Disponivel", "", 0, 0, 0, KEEP_AT_ZERO, 0},
@@ -113,9 +157,20 @@ Display dispArray[ROW] = {
 
 
 char strReply[80];
-char auxStr[80]; 
+char auxStr[80];
+
+/**
+ * @var unsigned long uptime
+ * @brief Tempo em que o Arduino está ligado em milissegundos.
+ */
 unsigned long uptime;
+
 LiquidCrystal_I2C lcd(ADDRESS,COL,ROW); // Chamada da funcação LiquidCrystal para ser usada com o I2C
+
+/**
+ * @var SerialProtocol usbProto
+ * @brief Classe que implementa a transmissão e recepção de quadros pela serial sobre USB.
+ */
 SerialProtocol usbProto;
 
 /*****************************************************************************/
@@ -209,13 +264,13 @@ void atualizaDisplay(int lines) {
 void parseMessage() {
     char * strtokIndx; // this is used by strtok() as an index
     usbProto.removeAccentMarker(usbProto.receivedChars);
-    strtokIndx = strtok(usbProto.receivedChars,",");      // O código da mensagem
+    strtokIndx = strtok(usbProto.receivedChars,"|");      // O código da mensagem
     netMessage.code = atoi(strtokIndx);
     
-    strtokIndx = strtok(NULL, ",");             // A mensagem
+    strtokIndx = strtok(NULL, "|");             // A mensagem
     strcpy(netMessage.message, strtokIndx);
         
-    strtokIndx = strtok(NULL, ",");             // Tempo de vida da mensagem em milissegundos
+    strtokIndx = strtok(NULL, "|");             // Tempo de vida da mensagem em milissegundos
     netMessage.TTL = atoi(strtokIndx);
 }
 
@@ -253,14 +308,14 @@ void loop()
     switch (netMessage.code) {
       case PING:
         strReply[0] = '\0';
-        strcat(strReply, "001,");
+        strcat(strReply, "001|");
         uptime = millis();
         itoa( uptime, auxStr, 10);
         strcat(strReply, auxStr);
         usbProto.sendFrame(strReply);
         break;
       case TIME:
-        usbProto.sendFrame("002,OK");
+        usbProto.sendFrame("002|OK");
         strcpy(dispArray[0].message, netMessage.message);
         dispArray[0].messageSize = strlen(netMessage.message);
         dispArray[0].TTL = millis() + netMessage.TTL;
@@ -268,7 +323,7 @@ void loop()
         dispArray[0].keepAtZeroPosition = KEEP_AT_ZERO;
         break;
       case LECTURE_NAME:
-        usbProto.sendFrame("002,OK");
+        usbProto.sendFrame("002|OK");
         strcpy(dispArray[1].message, netMessage.message);
         dispArray[1].messageSize = strlen(netMessage.message);
         dispArray[1].TTL = millis() + netMessage.TTL;
@@ -277,7 +332,7 @@ void loop()
         
         break;
       case SPEAKER:
-        usbProto.sendFrame("002,OK");
+        usbProto.sendFrame("002|OK");
         strcpy(dispArray[2].message, netMessage.message);
         dispArray[2].messageSize = strlen(netMessage.message);
         dispArray[2].TTL = millis() + netMessage.TTL;
@@ -285,7 +340,7 @@ void loop()
         dispArray[2].keepAtZeroPosition = KEEP_AT_ZERO;
         break;
       case ATTENDEE:
-        usbProto.sendFrame("002,OK");
+        usbProto.sendFrame("002|OK");
         strcpy(dispArray[3].message, netMessage.message);
         dispArray[3].messageSize = strlen(netMessage.message);
         dispArray[3].TTL = millis() + netMessage.TTL;
@@ -294,11 +349,11 @@ void loop()
         atualizaDisplay(3);  //Atualiza forçosamente só a linha 3, o display fica mais responsivo a tecladas rápidas.
         break;
       case SUCCESS:
-        usbProto.sendFrame("002,OK");
+        usbProto.sendFrame("002|OK");
         tone(BUZZER,1000,150);
         break;
       case FAIL:
-        usbProto.sendFrame("002,OK");
+        usbProto.sendFrame("002|OK");
         tone(BUZZER,2000,150);
         delay(300);
         tone(BUZZER,2000,150);
