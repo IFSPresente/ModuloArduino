@@ -33,15 +33,16 @@
 * São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para: '\<', '\>' e '\\'.
 * A semântica das mensagens é específica para a aplicação IFSPresente.
 * Há seis tipos de mensagens.
-* * <100,0,0>           &rarr PING                                             
-* * <200,TEXTO,TIMEOUT> &rarr TIME (Linha 0, para sala, data e hora)           
-* * <300,TEXTO,TIMEOUT> &rarr LECTURE_NAME (Linha 1, para nome da palestra)    
-* * <400,TEXTO,TIMEOUT> &rarr SPEAKER (Linha 2, para nome do palestrante)      
-* * <500,TEXTO,TIEMOUT> &rarr ATTENDEE (Linha 3, aponta participante registrado
-* * <600,0,0>           &rarr SUCCESS (Beep de sucesso no registro)            
-* * <601,0,0>           &rarr FAIL (Beep de falha no registro)
-* * <700,HH:MM:SS,0>    &rarr SETTIME (Define a hora do RTC)
-* * <701,0,0>           &rarr GETTIME (Recebe a hora do RTC)              
+* * <100,0,0>           \htmlonly &rarr \endhtmlonly PING                                             
+* * <200,TEXTO,TIMEOUT> \htmlonly &rarr \endhtmlonly TIME (Linha 0, para sala, data e hora)           
+* * <300,TEXTO,TIMEOUT> \htmlonly &rarr \endhtmlonly LECTURE_NAME (Linha 1, para nome da palestra)    
+* * <400,TEXTO,TIMEOUT> \htmlonly &rarr \endhtmlonly SPEAKER (Linha 2, para nome do palestrante)      
+* * <500,TEXTO,TIEMOUT> \htmlonly &rarr \endhtmlonly ATTENDEE (Linha 3, aponta participante registrado
+* * <600,0,0>           \htmlonly &rarr \endhtmlonly SUCCESS (Beep de sucesso no registro)            
+* * <601,0,0>           \htmlonly &rarr \endhtmlonly FAIL (Beep de falha no registro)
+* * <700,HH:MM:SS,0>    \htmlonly &rarr \endhtmlonly SETTIME (Define a hora do RTC)
+* * <701,0,0>           \htmlonly &rarr \endhtmlonly GETTIME (Recebe a hora do RTC)     
+*         
 * Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo.
 */
 
