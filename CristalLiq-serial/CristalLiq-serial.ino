@@ -68,15 +68,22 @@
 #define GETTIME      701 /**< Comando para solicitar data/hora do RTC ligado ao Arduino. */
 /** @} */
 
-#define BUZZER      2           // Pino digital ligado ao buzzer
 
-#define COL        20           // Serve para definir o numero de colunas do display utilizado
-#define ROW         4           // Serve para definir o numero de linhas do display utilizado
-#define ADDRESS  0x27           // Serve para definir o endereço do display.
-#define DISPLAY_UPDATE_DELAY 500
-#define LOOP_DELAY            10
-#define KEEP_AT_ZERO           1
-#define KEEP_AT_LAST           1
+/** 
+ * @name Macros de controle dos dispositivos.
+ * @brief Constantes usadas para I2C e controles adicionais.
+ *
+ * Essas constantes são relacionadas aos endereços I2C e demais ajustes sobre os dispositivos externos.
+* @{
+*/
+#define BUZZER      2               /**< Pino digital ligado ao _buzzer_ */
+#define COL        20               /**< Serve para definir o numero de colunas do display utilizado */ 
+#define ROW         4               /**< Serve para definir o numero de linhas do display utilizado  */
+#define ADDRESS  0x27               /**< Serve para definir o endereço do display. */
+#define DISPLAY_UPDATE_DELAY 500    /**< Tempo em milissegundos em que um texto é exibido numa linha do display antes de sofrer _scroll_ */ 
+#define LOOP_DELAY            10    /**< Tempo em que o loop principal do código do Arduino dorme à espera de uma mensagem */
+#define KEEP_AT_ZERO           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de iniciar o _scroll_ */
+#define KEEP_AT_LAST           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de reiniciar o _scroll_ */
 
 struct ProtocolMessage {
   int code;
