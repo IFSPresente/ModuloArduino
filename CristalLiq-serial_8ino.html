@@ -91,12 +91,14 @@ $(document).ready(function(){initNavTree('CristalLiq-serial_8ino.html',''); init
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">CristalLiq-serial.ino File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>O Arduino Nano gerencia a exibição no <a class="el" href="structDisplay.html">Display</a> de quatro linhas, o acionamento do <em>buzzer</em> e o ajuste e leitura do RTC.  
+<p>O Arduino Nano gerencia a exibição no <a class="el" href="structDisplay.html" title="Representa o estado de uma linha do display LCD.">Display</a> de quatro linhas, o acionamento do <em>buzzer</em> e o ajuste e leitura do RTC.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Wire.h&gt;</code><br />
 <code>#include &lt;LiquidCrystal_I2C.h&gt;</code><br />
@@ -110,8 +112,10 @@ Include dependency graph for CristalLiq-serial.ino:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProtocolMessage.html">ProtocolMessage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representa a decodificação de uma mensagem recebida.  <a href="structProtocolMessage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDisplay.html">Display</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representa o estado de uma linha do display LCD.  <a href="structDisplay.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -138,11 +142,10 @@ Macros</h2></td></tr>
 <tr class="separator:a27a942da2560b15dc5291c8f386c426a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1586d6a1539e7921374aeea8b907805" id="r_ab1586d6a1539e7921374aeea8b907805"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#ab1586d6a1539e7921374aeea8b907805">GETTIME</a>&#160;&#160;&#160;701</td></tr>
 <tr class="separator:ab1586d6a1539e7921374aeea8b907805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader">Macros de controle dos dispositivos.</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p>Constantes usadas para I2C e controles adicionais.</p>
+<tr><td colspan="2"><div class="groupHeader">Macros de controle dos dispositivos.</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Constantes usadas para I2C e controles adicionais.</p>
 <p>Essas constantes são relacionadas aos endereços I2C e demais ajustes sobre os dispositivos externos. </p>
-</td></tr>
+</div></td></tr>
 <tr class="memitem:a145103118f6d9d1129aa4509cf214a13" id="r_a145103118f6d9d1129aa4509cf214a13"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#a145103118f6d9d1129aa4509cf214a13">BUZZER</a>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:a145103118f6d9d1129aa4509cf214a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab00f2b8e8bad4307cf0775a5520cf663" id="r_ab00f2b8e8bad4307cf0775a5520cf663"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#ab00f2b8e8bad4307cf0775a5520cf663">COL</a>&#160;&#160;&#160;20</td></tr>
@@ -159,23 +162,9 @@ Macros</h2></td></tr>
 <tr class="separator:a7a4d81092b3cee058ef3cfc9a322f174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a114bf58c569f23fae99f81503de6edf2" id="r_a114bf58c569f23fae99f81503de6edf2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#a114bf58c569f23fae99f81503de6edf2">KEEP_AT_LAST</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a114bf58c569f23fae99f81503de6edf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a420f122736aa560ba7cdaeece4e69f20" id="r_a420f122736aa560ba7cdaeece4e69f20"><td class="memItemLeft" align="right" valign="top"><a id="a420f122736aa560ba7cdaeece4e69f20" name="a420f122736aa560ba7cdaeece4e69f20"></a>
-<a class="el" href="structProtocolMessage.html">ProtocolMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>netMessage</b></td></tr>
-<tr class="separator:a420f122736aa560ba7cdaeece4e69f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a795151f055a96eb58c8ecdf82a8c9a77" id="r_a795151f055a96eb58c8ecdf82a8c9a77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDisplay.html">Display</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#a795151f055a96eb58c8ecdf82a8c9a77">dispArray</a> [<a class="el" href="CristalLiq-serial_8ino.html#ac6f18a9e1d00b4637522b1b469a92021">ROW</a>]</td></tr>
-<tr class="separator:a795151f055a96eb58c8ecdf82a8c9a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40d2c39a0e92c065f0ce6ba15395355d" id="r_a40d2c39a0e92c065f0ce6ba15395355d"><td class="memItemLeft" align="right" valign="top"><a id="a40d2c39a0e92c065f0ce6ba15395355d" name="a40d2c39a0e92c065f0ce6ba15395355d"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>strReply</b> [80]</td></tr>
-<tr class="separator:a40d2c39a0e92c065f0ce6ba15395355d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9081f84b1a60463e5ac1116533cc3a5" id="r_ab9081f84b1a60463e5ac1116533cc3a5"><td class="memItemLeft" align="right" valign="top"><a id="ab9081f84b1a60463e5ac1116533cc3a5" name="ab9081f84b1a60463e5ac1116533cc3a5"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>auxStr</b> [80]</td></tr>
-<tr class="separator:ab9081f84b1a60463e5ac1116533cc3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada266441835f6c84df287080413b8c3f" id="r_ada266441835f6c84df287080413b8c3f"><td class="memItemLeft" align="right" valign="top"><a id="ada266441835f6c84df287080413b8c3f" name="ada266441835f6c84df287080413b8c3f"></a>
-unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></td></tr>
-<tr class="separator:ada266441835f6c84df287080413b8c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae342651406e7075073526a83d6391857" id="r_ae342651406e7075073526a83d6391857"><td class="memItemLeft" align="right" valign="top"><a id="ae342651406e7075073526a83d6391857" name="ae342651406e7075073526a83d6391857"></a>
-<a class="el" href="classSerialProtocol.html">SerialProtocol</a>&#160;</td><td class="memItemRight" valign="bottom"><b>usbProto</b></td></tr>
-<tr class="separator:ae342651406e7075073526a83d6391857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
 <tr class="memitem:a09b44602c7165d0959167b168ffd70a1" id="r_a09b44602c7165d0959167b168ffd70a1"><td class="memItemLeft" align="right" valign="top"><a id="a09b44602c7165d0959167b168ffd70a1" name="a09b44602c7165d0959167b168ffd70a1"></a>
 LiquidCrystal_I2C&#160;</td><td class="memItemRight" valign="bottom"><b>lcd</b> (<a class="el" href="CristalLiq-serial_8ino.html#a280feb883e9d4a7edcc69c8bcb9f38f2">ADDRESS</a>, <a class="el" href="CristalLiq-serial_8ino.html#ab00f2b8e8bad4307cf0775a5520cf663">COL</a>, <a class="el" href="CristalLiq-serial_8ino.html#ac6f18a9e1d00b4637522b1b469a92021">ROW</a>)</td></tr>
 <tr class="separator:a09b44602c7165d0959167b168ffd70a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,25 +183,55 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setup</b> ()</td></tr
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top"><a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> ()</td></tr>
 <tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a420f122736aa560ba7cdaeece4e69f20" id="r_a420f122736aa560ba7cdaeece4e69f20"><td class="memItemLeft" align="right" valign="top"><a id="a420f122736aa560ba7cdaeece4e69f20" name="a420f122736aa560ba7cdaeece4e69f20"></a>
+<a class="el" href="structProtocolMessage.html">ProtocolMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>netMessage</b></td></tr>
+<tr class="memdesc:a420f122736aa560ba7cdaeece4e69f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mantém uma única mensagem recebida. <br /></td></tr>
+<tr class="separator:a420f122736aa560ba7cdaeece4e69f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a795151f055a96eb58c8ecdf82a8c9a77" id="r_a795151f055a96eb58c8ecdf82a8c9a77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDisplay.html">Display</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#a795151f055a96eb58c8ecdf82a8c9a77">dispArray</a> [<a class="el" href="CristalLiq-serial_8ino.html#ac6f18a9e1d00b4637522b1b469a92021">ROW</a>]</td></tr>
+<tr class="memdesc:a795151f055a96eb58c8ecdf82a8c9a77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informações para as quatro linhas do <a class="el" href="structDisplay.html" title="Representa o estado de uma linha do display LCD.">Display</a>.  <br /></td></tr>
+<tr class="separator:a795151f055a96eb58c8ecdf82a8c9a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d2c39a0e92c065f0ce6ba15395355d" id="r_a40d2c39a0e92c065f0ce6ba15395355d"><td class="memItemLeft" align="right" valign="top"><a id="a40d2c39a0e92c065f0ce6ba15395355d" name="a40d2c39a0e92c065f0ce6ba15395355d"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>strReply</b> [80]</td></tr>
+<tr class="separator:a40d2c39a0e92c065f0ce6ba15395355d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9081f84b1a60463e5ac1116533cc3a5" id="r_ab9081f84b1a60463e5ac1116533cc3a5"><td class="memItemLeft" align="right" valign="top"><a id="ab9081f84b1a60463e5ac1116533cc3a5" name="ab9081f84b1a60463e5ac1116533cc3a5"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>auxStr</b> [80]</td></tr>
+<tr class="separator:ab9081f84b1a60463e5ac1116533cc3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada266441835f6c84df287080413b8c3f" id="r_ada266441835f6c84df287080413b8c3f"><td class="memItemLeft" align="right" valign="top"><a id="ada266441835f6c84df287080413b8c3f" name="ada266441835f6c84df287080413b8c3f"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></td></tr>
+<tr class="memdesc:ada266441835f6c84df287080413b8c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tempo em que o Arduino está ligado em milissegundos. <br /></td></tr>
+<tr class="separator:ada266441835f6c84df287080413b8c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae342651406e7075073526a83d6391857" id="r_ae342651406e7075073526a83d6391857"><td class="memItemLeft" align="right" valign="top"><a id="ae342651406e7075073526a83d6391857" name="ae342651406e7075073526a83d6391857"></a>
+<a class="el" href="classSerialProtocol.html">SerialProtocol</a>&#160;</td><td class="memItemRight" valign="bottom"><b>usbProto</b></td></tr>
+<tr class="memdesc:ae342651406e7075073526a83d6391857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe que implementa a transmissão e recepção de quadros pela serial sobre USB. <br /></td></tr>
+<tr class="separator:ae342651406e7075073526a83d6391857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>O Arduino Nano gerencia a exibição no <a class="el" href="structDisplay.html">Display</a> de quatro linhas, o acionamento do <em>buzzer</em> e o ajuste e leitura do RTC. </p>
-<p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt;'. No interior do quadro é possível usar o caracter de escape para: '&lt;', '&gt;' e '\'. A semântica das mensagens é específica para a aplicação IFSPresente. Há seis tipos de mensagens.</p><ul>
-<li>&lt;100,0,0&gt; &rarr; PING <br  />
+<div class="textblock"><p>O Arduino Nano gerencia a exibição no <a class="el" href="structDisplay.html" title="Representa o estado de uma linha do display LCD.">Display</a> de quatro linhas, o acionamento do <em>buzzer</em> e o ajuste e leitura do RTC. </p>
+<p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt;'. No interior do quadro é possível usar o caracter de escape para: '&lt;', '&gt;' e '\'. A semântica das mensagens é específica para a aplicação IFSPresente. Há nove tipos de mensagens emitidas pela TV-Box.</p><ul>
+<li>&lt;100|0|0&gt; &rarr; PING <br  />
 </li>
-<li>&lt;200,TEXTO,TIMEOUT&gt; &rarr; TIME (Linha 0, para sala, data e hora) <br  />
+<li>&lt;200|TEXTO|TIMEOUT&gt; &rarr; TIME (Linha 0, para sala, data e hora) <br  />
 </li>
-<li>&lt;300,TEXTO,TIMEOUT&gt; &rarr; LECTURE_NAME (Linha 1, para nome da palestra) <br  />
+<li>&lt;300|TEXTO|TIMEOUT&gt; &rarr; LECTURE_NAME (Linha 1, para nome da palestra) <br  />
 </li>
-<li>&lt;400,TEXTO,TIMEOUT&gt; &rarr; SPEAKER (Linha 2, para nome do palestrante) <br  />
+<li>&lt;400|TEXTO|TIMEOUT&gt; &rarr; SPEAKER (Linha 2, para nome do palestrante) <br  />
 </li>
-<li>&lt;500,TEXTO,TIEMOUT&gt; &rarr; ATTENDEE (Linha 3, aponta participante registrado</li>
-<li>&lt;600,0,0&gt; &rarr; SUCCESS (Beep de sucesso no registro) <br  />
+<li>&lt;500|TEXTO|TIEMOUT&gt; &rarr; ATTENDEE (Linha 3, aponta participante registrado</li>
+<li>&lt;600|0|0&gt; &rarr; SUCCESS (Beep de sucesso no registro) <br  />
 </li>
-<li>&lt;601,0,0&gt; &rarr; FAIL (Beep de falha no registro)</li>
-<li>&lt;700,HH:MM:SS,0&gt; &rarr; SETTIME (Define a hora do RTC)</li>
-<li>&lt;701,0,0&gt; &rarr; GETTIME (Recebe a hora do RTC) <br  />
+<li>&lt;601|0|0&gt; &rarr; FAIL (Beep de falha no registro)</li>
+<li>&lt;700|YYYY:MM:DD:HH:MM:SS|0&gt; &rarr; SETTIME (Define a hora do RTC)</li>
+<li>&lt;701|0|0&gt; &rarr; GETTIME (Recebe a hora do RTC) <br  />
 </li>
+</ul>
+<p>O Arduino responde com três tipos de mensagens.</p><ul>
+<li>&lt;001|uptime em milissegundos|versão de firmware&gt; &rarr; Resposta ao ping</li>
+<li>&lt;003|YYYY:MM:DD:HH:MM:SS|temperatura&gt; &rarr; Resposta ao gettime <br  />
+</li>
+<li>&lt;002|OK|&gt; &rarr; Resposta aos demais comandos</li>
 </ul>
 <p>Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -490,8 +509,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> ()</td></tr>
 <div class="line">                          {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;Sem reserva de palestrante&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, 0, 0, 0, <a class="code hl_define" href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a>, 0},</div>
 <div class="line">                          {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;Aguardando Registro&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, 0, 0, 0, <a class="code hl_define" href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a>, 0}</div>
 <div class="line">                         }</div>
-<div class="ttc" id="aCristalLiq-serial_8ino_html_a7a4d81092b3cee058ef3cfc9a322f174"><div class="ttname"><a href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a></div><div class="ttdeci">#define KEEP_AT_ZERO</div><div class="ttdef"><b>Definition</b> CristalLiq-serial.ino:85</div></div>
+<div class="ttc" id="aCristalLiq-serial_8ino_html_a7a4d81092b3cee058ef3cfc9a322f174"><div class="ttname"><a href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a></div><div class="ttdeci">#define KEEP_AT_ZERO</div><div class="ttdef"><b>Definition</b> CristalLiq-serial.ino:90</div></div>
 </div><!-- fragment -->
+<p>Informações para as quatro linhas do <a class="el" href="structDisplay.html" title="Representa o estado de uma linha do display LCD.">Display</a>. </p>
+<p>Contém as quatro linhas do display LCD. Cada posição tem:</p><ul>
+<li>Mensagem atual (<code>message</code>)</li>
+<li>Mensagem padrão (<code>defaultMessage</code>)</li>
+<li>Texto a imprimir (<code>toPrint</code>)</li>
+<li>Tamanho da mensagem (ajustado em <code>setup()</code>)</li>
+<li>Tamanho da mensagem padrão (ajustado em <code>setup()</code>)</li>
+<li>Posição inicial da string a partir da onde imprime no display</li>
+<li>Tempo de vida (TTL) de impressão da mensagem</li>
+</ul>
+<p>Inicialmente preenchido com mensagens padrão do sistema:</p><ul>
+<li>Linha 0 → "IFSPresente"</li>
+<li>Linha 1 → "Local Disponivel"</li>
+<li>Linha 2 → "Sem reserva de palestrante"</li>
+<li>Linha 3 → "Aguardando Registro" </li>
+</ul>
+
 </div>
 </div>
 </div><!-- contents -->

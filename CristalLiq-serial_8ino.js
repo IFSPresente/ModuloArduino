@@ -1,7 +1,7 @@
 var CristalLiq_serial_8ino =
 [
-    [ "ProtocolMessage", "structProtocolMessage.html", null ],
-    [ "Display", "structDisplay.html", null ],
+    [ "ProtocolMessage", "structProtocolMessage.html", "structProtocolMessage" ],
+    [ "Display", "structDisplay.html", "structDisplay" ],
     [ "ADDRESS", "CristalLiq-serial_8ino.html#a280feb883e9d4a7edcc69c8bcb9f38f2", null ],
     [ "ATTENDEE", "CristalLiq-serial_8ino.html#a0afcbd744f54831f6fb36c9ad8c5b46f", null ],
     [ "BUZZER", "CristalLiq-serial_8ino.html#a145103118f6d9d1129aa4509cf214a13", null ],
@@ -18,5 +18,9 @@ var CristalLiq_serial_8ino =
     [ "SETTIME", "CristalLiq-serial_8ino.html#a27a942da2560b15dc5291c8f386c426a", null ],
     [ "SPEAKER", "CristalLiq-serial_8ino.html#a99ab171b0b50109a6d50f1b9a5e88f26", null ],
     [ "SUCCESS", "CristalLiq-serial_8ino.html#aa90cac659d18e8ef6294c7ae337f6b58", null ],
-    [ "TIME", "CristalLiq-serial_8ino.html#a078b6c12f1ac6819cecef90ab5870276", null ]
+    [ "TIME", "CristalLiq-serial_8ino.html#a078b6c12f1ac6819cecef90ab5870276", null ],
+    [ "dispArray", "CristalLiq-serial_8ino.html#a795151f055a96eb58c8ecdf82a8c9a77", null ],
+    [ "netMessage", "CristalLiq-serial_8ino.html#a420f122736aa560ba7cdaeece4e69f20", null ],
+    [ "uptime", "CristalLiq-serial_8ino.html#ada266441835f6c84df287080413b8c3f", null ],
+    [ "usbProto", "CristalLiq-serial_8ino.html#ae342651406e7075073526a83d6391857", null ]
 ];

@@ -96,19 +96,68 @@ $(document).ready(function(){initNavTree('structProtocolMessage.html',''); initR
   <div class="headertitle"><div class="title">ProtocolMessage Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Representa a decodificação de uma mensagem recebida.  
+ <a href="structProtocolMessage.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4d8a27be4f46c348888b67a2b9a0100a" id="r_a4d8a27be4f46c348888b67a2b9a0100a"><td class="memItemLeft" align="right" valign="top"><a id="a4d8a27be4f46c348888b67a2b9a0100a" name="a4d8a27be4f46c348888b67a2b9a0100a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>code</b></td></tr>
+<tr class="memitem:a4d8a27be4f46c348888b67a2b9a0100a" id="r_a4d8a27be4f46c348888b67a2b9a0100a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProtocolMessage.html#a4d8a27be4f46c348888b67a2b9a0100a">code</a></td></tr>
 <tr class="separator:a4d8a27be4f46c348888b67a2b9a0100a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ee3deb71b8e77ea46eaca690037d26b" id="r_a1ee3deb71b8e77ea46eaca690037d26b"><td class="memItemLeft" align="right" valign="top"><a id="a1ee3deb71b8e77ea46eaca690037d26b" name="a1ee3deb71b8e77ea46eaca690037d26b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>TTL</b></td></tr>
+<tr class="memitem:a1ee3deb71b8e77ea46eaca690037d26b" id="r_a1ee3deb71b8e77ea46eaca690037d26b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProtocolMessage.html#a1ee3deb71b8e77ea46eaca690037d26b">TTL</a></td></tr>
 <tr class="separator:a1ee3deb71b8e77ea46eaca690037d26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a343722a2b24dac75466e5255eec86b73" id="r_a343722a2b24dac75466e5255eec86b73"><td class="memItemLeft" align="right" valign="top"><a id="a343722a2b24dac75466e5255eec86b73" name="a343722a2b24dac75466e5255eec86b73"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>message</b> [MAX_STRING+1]</td></tr>
+<tr class="memitem:a343722a2b24dac75466e5255eec86b73" id="r_a343722a2b24dac75466e5255eec86b73"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProtocolMessage.html#a343722a2b24dac75466e5255eec86b73">message</a> [MAX_STRING+1]</td></tr>
 <tr class="separator:a343722a2b24dac75466e5255eec86b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Representa a decodificação de uma mensagem recebida. </p>
+<p>Uma mensagem num quadro vem em três campos separados por '|', &lt;code|message|TTL&gt;. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4d8a27be4f46c348888b67a2b9a0100a" name="a4d8a27be4f46c348888b67a2b9a0100a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d8a27be4f46c348888b67a2b9a0100a">&#9670;&#160;</a></span>code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ProtocolMessage::code</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Código do serviço solicitado. </p>
+
+</div>
+</div>
+<a id="a343722a2b24dac75466e5255eec86b73" name="a343722a2b24dac75466e5255eec86b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a343722a2b24dac75466e5255eec86b73">&#9670;&#160;</a></span>message</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char ProtocolMessage::message[MAX_STRING+1]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Mensagem. </p>
+
+</div>
+</div>
+<a id="a1ee3deb71b8e77ea46eaca690037d26b" name="a1ee3deb71b8e77ea46eaca690037d26b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ee3deb71b8e77ea46eaca690037d26b">&#9670;&#160;</a></span>TTL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ProtocolMessage::TTL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tempo de vida para mensagens que são exibidas no <em>display</em>. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>CristalLiq-serial/<a class="el" href="CristalLiq-serial_8ino.html">CristalLiq-serial.ino</a></li>
 </ul>
