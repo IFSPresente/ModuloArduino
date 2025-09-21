@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['de_20estado_20do_20protocolo_0',['Máquina de Estado do protocolo',['../index.html#img_sec',1,'']]],
-  ['display_1',['Display',['../structDisplay.html',1,'']]],
-  ['do_20protocolo_2',['Máquina de Estado do protocolo',['../index.html#img_sec',1,'']]]
+  ['col_0',['COL',['../CristalLiq-serial_8ino.html#ab00f2b8e8bad4307cf0775a5520cf663',1,'CristalLiq-serial.ino']]],
+  ['cristalliq_1',['Módulo Arduino - CristalLiq',['../index.html',1,'']]],
+  ['cristalliq_2dserial_2eino_2',['CristalLiq-serial.ino',['../CristalLiq-serial_8ino.html',1,'']]]
 ];

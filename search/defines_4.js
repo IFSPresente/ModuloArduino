@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ping_0',['PING',['../CristalLiq-serial_8ino.html#a4c84003a6e494d221dcb7afbf61e762d',1,'CristalLiq-serial.ino']]]
+  ['fail_0',['FAIL',['../CristalLiq-serial_8ino.html#abb508ea8227673f419e9fe3a86c30d8e',1,'CristalLiq-serial.ino']]]
 ];

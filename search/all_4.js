@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fail_0',['FAIL',['../CristalLiq-serial_8ino.html#abb508ea8227673f419e9fe3a86c30d8e',1,'CristalLiq-serial.ino']]],
-  ['funcionalidades_1',['Funcionalidades',['../index.html#features_sec',1,'']]]
+  ['estado_20do_20protocolo_0',['Máquina de Estado do protocolo',['../index.html#img_sec',1,'']]]
 ];

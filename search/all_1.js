@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cristalliq_0',['Módulo Arduino - CristalLiq',['../index.html',1,'']]],
-  ['cristalliq_2dserial_2eino_1',['CristalLiq-serial.ino',['../CristalLiq-serial_8ino.html',1,'']]]
+  ['buzzer_0',['BUZZER',['../CristalLiq-serial_8ino.html#a145103118f6d9d1129aa4509cf214a13',1,'CristalLiq-serial.ino']]]
 ];
