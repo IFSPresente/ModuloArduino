@@ -215,22 +215,23 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>O Arduino Nano gerencia a exibição no <a class="el" href="structDisplay.html">Display</a> de quatro linhas, o acionamento do <em>buzzer</em> e o ajuste e leitura do RTC. </p>
 <p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt;'. No interior do quadro é possível usar o caracter de escape para: '&lt;', '&gt;' e '\'. A semântica das mensagens é específica para a aplicação IFSPresente. Há seis tipos de mensagens.</p><ul>
-<li>&lt;100,0,0&gt; &amp;rarr PING <br  />
+<li>&lt;100,0,0&gt;  &rarr  PING <br  />
 </li>
-<li>&lt;200,TEXTO,TIMEOUT&gt; &amp;rarr TIME (Linha 0, para sala, data e hora) <br  />
+<li>&lt;200,TEXTO,TIMEOUT&gt;  &rarr  TIME (Linha 0, para sala, data e hora) <br  />
 </li>
-<li>&lt;300,TEXTO,TIMEOUT&gt; &amp;rarr LECTURE_NAME (Linha 1, para nome da palestra) <br  />
+<li>&lt;300,TEXTO,TIMEOUT&gt;  &rarr  LECTURE_NAME (Linha 1, para nome da palestra) <br  />
 </li>
-<li>&lt;400,TEXTO,TIMEOUT&gt; &amp;rarr SPEAKER (Linha 2, para nome do palestrante) <br  />
+<li>&lt;400,TEXTO,TIMEOUT&gt;  &rarr  SPEAKER (Linha 2, para nome do palestrante) <br  />
 </li>
-<li>&lt;500,TEXTO,TIEMOUT&gt; &amp;rarr ATTENDEE (Linha 3, aponta participante registrado</li>
-<li>&lt;600,0,0&gt; &amp;rarr SUCCESS (Beep de sucesso no registro) <br  />
+<li>&lt;500,TEXTO,TIEMOUT&gt;  &rarr  ATTENDEE (Linha 3, aponta participante registrado</li>
+<li>&lt;600,0,0&gt;  &rarr  SUCCESS (Beep de sucesso no registro) <br  />
 </li>
-<li>&lt;601,0,0&gt; &amp;rarr FAIL (Beep de falha no registro)</li>
-<li>&lt;700,HH:MM:SS,0&gt; &amp;rarr SETTIME (Define a hora do RTC)</li>
-<li>&lt;701,0,0&gt; &amp;rarr GETTIME (Recebe a hora do RTC) <br  />
- Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo. </li>
+<li>&lt;601,0,0&gt;  &rarr  FAIL (Beep de falha no registro)</li>
+<li>&lt;700,HH:MM:SS,0&gt;  &rarr  SETTIME (Define a hora do RTC)</li>
+<li>&lt;701,0,0&gt;  &rarr  GETTIME (Recebe a hora do RTC) <br  />
+</li>
 </ul>
+<p>Outras aplicações podem definir outros modelos de mensagens nos quadros do protocolo. </p>
 </div><h2 class="groupheader">Variable Documentation</h2>
 <a id="a795151f055a96eb58c8ecdf82a8c9a77" name="a795151f055a96eb58c8ecdf82a8c9a77"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a795151f055a96eb58c8ecdf82a8c9a77">&#9670;&#160;</a></span>dispArray</h2>
