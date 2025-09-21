@@ -50,15 +50,23 @@
 #include <LiquidCrystal_I2C.h> // Biblioteca utilizada para fazer a comunicação com o display 20x4 
 #include "frame.h"             // Implementação da classe SerialProtocol
 
-#define PING         100
-#define TIME         200
-#define LECTURE_NAME 300
-#define SPEAKER      400
-#define ATTENDEE     500
-#define SUCCESS      600
-#define FAIL         601
-#define SETTIME      700
-#define GETTIME      701
+/** 
+ * @name Códigos de Mensagens do Protocolo.
+ * @brief Constantes usadas na comunicação serial com a TV-Box.
+ *
+ * Cada constante representa um tipo de mensagem disparada pelo master (TV-Box).
+* @{
+*/
+#define PING         100 /**< Obtém o timestamp do uptime e a versão do firmware. */ 
+#define TIME         200 /**< Linha 0: sala, data e hora. */
+#define LECTURE_NAME 300 /**< Linha 1: nome da palestra. */
+#define SPEAKER      400 /**< Linha 2: nome do professor responsável pela aula em curso. */
+#define ATTENDEE     500 /**< Linha 3: estudante que aponta sua presença. */
+#define SUCCESS      600 /**< Beep de sucesso no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. */
+#define FAIL         601 /**< Beep de falha no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. . */
+#define SETTIME      700 /**< Comando para ajustar data/hora do RTC ligado ao Arduino. */
+#define GETTIME      701 /**< Comando para solicitar data/hora do RTC ligado ao Arduino. */
+/** @} */
 
 #define BUZZER      2           // Pino digital ligado ao buzzer
 
