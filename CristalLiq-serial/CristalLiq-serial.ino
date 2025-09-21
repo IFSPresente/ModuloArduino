@@ -33,8 +33,8 @@
 * São mensagens de quadro encapsuladas com os caracteres '<' e '>'. No interior do quadro é possível usar o caracter de escape para: '\<', '\>' e '\\'.
 * A semântica das mensagens é específica para a aplicação IFSPresente.
 * Há seis tipos de mensagens.
-* * <100,0,0>           \htmlonly &rarr; \endhtmlonly PING                                             
-* * <200,TEXTO,TIMEOUT> \htmlonly &rar; \endhtmlonly TIME (Linha 0, para sala, data e hora)           
+* * <100,0,0>            &rarr;  PING                                             
+* * <200,TEXTO,TIMEOUT> \htmlonly &rarr; \endhtmlonly TIME (Linha 0, para sala, data e hora)           
 * * <300,TEXTO,TIMEOUT> \htmlonly &rarr; \endhtmlonly LECTURE_NAME (Linha 1, para nome da palestra)    
 * * <400,TEXTO,TIMEOUT> \htmlonly &rarr; \endhtmlonly SPEAKER (Linha 2, para nome do palestrante)      
 * * <500,TEXTO,TIEMOUT> \htmlonly &rarr; \endhtmlonly ATTENDEE (Linha 3, aponta participante registrado
