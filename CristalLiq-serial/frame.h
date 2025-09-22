@@ -23,6 +23,9 @@ enum machineState {START, RECEIVING, ESCAPE, RECEIVED};
  *
  * @note O buffer `receivedChars` armazena a mensagem recebida,
  *       `sendChars` armazena a mensagem a ser enviada.
+ *
+ * @section img_sec Máquina de Estado do protocolo
+ * \image html img/MaquinaEstadoProtocolo.png "Máquina de Estados"
  */
 class SerialProtocol {
 	public:
