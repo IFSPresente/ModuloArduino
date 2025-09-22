@@ -154,7 +154,13 @@ Display dispArray[ROW] = {
                           {"", "Aguardando Registro", "", 0, 0, 0, KEEP_AT_ZERO, 0}
                          };
 
-
+/**
+ * @var char* VERSION
+ * @brief Versão do _firmware_.
+ *
+ * @note É retornado junto com o serviço ping.
+ */
+const char* VERSION = "1.0";
 
 char strReply[80];
 char auxStr[80];
@@ -176,6 +182,29 @@ SerialProtocol usbProto;
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/
+/**
+ * @brief Copia um trecho de uma string de origem para um buffer de destino,
+ *        ajustando posição inicial e preenchendo com espaços em branco, se necessário.
+ *
+ * Esta função garante que o conteúdo copiado caiba exatamente no tamanho
+ * do display (ou outro destino), ajustando o índice inicial (`start`) caso:
+ * - A string de origem seja menor ou igual ao destino → começa da posição zero.
+ * - A string de origem seja maior que o destino, mas o ponto inicial da cópia desejada ultrapasse os limites → recua
+ *   o início para preencher completamente o destino.
+ *
+ * Após a cópia, o restante do buffer de destino é preenchido com espaços em branco,
+ * e o finalizador `'\0'` é adicionado ao fim.
+ *
+ * @param[out] dest       Buffer de destino (receberá a string copiada).
+ * @param[in]  sizeDest   Tamanho do buffer de destino (número de caracteres visíveis no display).
+ * @param[in]  origem     String de origem.
+ * @param[in]  sizeOrigem Tamanho da string de origem.
+ * @param[in]  start      Posição inicial na string de origem a partir da qual
+ *                        a cópia deve começar (pode ser ajustada internamente).
+ *
+ * @note Usa `min(sizeDest, sizeOrigem)` para calcular o máximo de caracteres a copiar.
+ *       O destino é sempre terminado em `'\0'`.
+ */
 void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start ) {
 
      //Se a string cabe no display, não pode iniciar impressão para além da posição zero
@@ -204,6 +233,35 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/
+/**
+ * @brief Atualiza o conteúdo exibido no display LCD linha a linha.
+ *
+ * Esta função gerencia a exibição de mensagens no display, considerando:
+ * - **Tempo mínimo entre atualizações** (usando `millis()` e `DISPLAY_UPDATE_DELAY`).
+ * - **Mensagens temporárias (TTL)**: quando expiram, voltam para a mensagem padrão.
+ * - **Rolagem (scroll)**: caso a mensagem seja maior que o número de colunas (`COL`),
+ *   realiza deslocamento progressivo, mantendo o início por alguns ciclos
+ *   (`KEEP_AT_ZERO`) antes de avançar.
+ *
+ * O comportamento difere conforme a mensagem ativa:
+ * - Se `dispArray[i].TTL` expirou → mostra `defaultMessage` com rolagem.
+ * - Caso contrário → mostra `message` com rolagem.
+ *
+ * @param[in] lines Índice da linha a ser atualizada:
+ *                  - `-1` → atualiza todas as linhas.
+ *                  - `0..ROW-1` → atualiza apenas a linha especificada.
+ *
+ * @note
+ * - Usa `copiaN()` para preencher o buffer de exibição (`toPrint`).
+ * - Usa o estado da máquina (`usbProto.machState`) para evitar atualizações
+ *   durante recepção de dados.
+ * - O cursor do LCD é posicionado no início de cada linha (`lcd.setCursor(0,i)`).
+ *
+ * ### Regras de rolagem
+ * - Quando `startPosition == 0`, mantém a mensagem parada por `KEEP_AT_ZERO` ciclos.
+ * - Depois, incrementa `startPosition` até o limite calculado,
+ *   com espera em `KEEP_AT_LAST` no final.
+ */
 void atualizaDisplay(int lines) {
    static unsigned long nextUpdate = 0;
    unsigned long currentTime = millis();
@@ -261,6 +319,19 @@ void atualizaDisplay(int lines) {
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/
+/**
+ * @brief Interpreta a mensagem recebida pela serial USB e atualiza a estrutura global netMessage.
+ *
+ * Esta função:
+ * - Remove os marcadores de acentuação gráfica da string recebida (`usbProto.receivedChars`).
+ * - Usa `strtok` para separar os campos da mensagem, assumindo o caractere `|` como delimitador.
+ * - Converte o primeiro campo para um código numérico (`netMessage.code`).
+ * - Copia o segundo campo como texto da mensagem (`netMessage.message`).
+ * - Converte o terceiro campo em milissegundos para o tempo de vida (`netMessage.TTL`).
+ *
+ * @note A função não recebe parâmetros nem retorna valor.
+ *       Atua diretamente sobre as variáveis globais `usbProto` e `netMessage`.
+ */
 void parseMessage() {
     char * strtokIndx; // this is used by strtok() as an index
     usbProto.removeAccentMarker(usbProto.receivedChars);
@@ -277,17 +348,36 @@ void parseMessage() {
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/
+/**
+ * @brief Configuração inicial do sistema Arduino.
+ *
+ * Esta função é chamada automaticamente pelo _framework_ Arduino
+ * logo após o reset ou inicialização da placa.
+ * Ela é chamada uma única vez.
+ *
+ * Inicializações realizadas:
+ * - Define o pino do buzzer (`BUZZER`) como saída.
+ * - Inicializa o display LCD (`lcd.init()`).
+ * - Configura contraste e backlight do display (mas não tem efeito no display que usamos).
+ * - Desativa _autoscroll_ e cursor piscante.
+ * - Limpa a tela do display (`lcd.clear()`).
+ * - Configura a taxa de comunicação serial (`usbProto.setBaudRate(9600)`).
+ * - Ajusta os tamanhos das mensagens padrão em `dispArray`.
+ *
+ * @note Esta função não recebe parâmetros e não retorna valor.
+ *       É executada uma única vez antes de `loop()`.
+ */
 void setup() //Incia o display
 {  
   pinMode(BUZZER, OUTPUT);
-  lcd.init();         // Serve para iniciar a comunicação com o display já conectado
+  lcd.init();           // Serve para iniciar a comunicação com o display já conectado
   //lcd.backlight();    // Serve para ligar a luz do display
   lcd.setContrast(255);
   lcd.setBacklight(255);
   lcd.noAutoscroll();
   lcd.noBlink();
-  lcd.clear();        // Serve para limpar a tela do display
-  usbProto.setBaudRate(9600); // send and receive at 9600 baud
+  lcd.clear();                // Serve para limpar a tela do display
+  usbProto.setBaudRate(9600); // Envia e recebe a 9600 baud
   //Ajusta o tamanho das strings default em dispArray
   for (int i = 0; i < ROW; i++) {
     dispArray[i].messageSize = strlen(dispArray[i].message);
@@ -298,6 +388,44 @@ void setup() //Incia o display
 /*****************************************************************************/
 /*                                                                           */
 /*****************************************************************************/
+/**
+ * @brief Loop principal do firmware.
+ *
+ * O `loop()` executa continuamente o ciclo de atualização do display,
+ * recepção de mensagens da TV-Box e execução dos comandos recebidos.
+ *
+ * O comportamento segue o protocolo definido:
+ * - **PING (100):** responde com uptime em ms e versão do firmware.
+ * - **TIME (200):** atualiza linha 0 (sala, data, hora).
+ * - **LECTURE_NAME (300):** atualiza linha 1 (nome da palestra).
+ * - **SPEAKER (400):** atualiza linha 2 (nome do professor).
+ * - **ATTENDEE (500):** atualiza linha 3 (participante) e força atualização imediata.
+ * - **SUCCESS (600):** feedback sonoro curto (registro aceito).
+ * - **FAIL (601):** feedback sonoro duplo (registro rejeitado).
+ *
+ * ### Estrutura do loop
+ * 1. Atualiza o display (`atualizaDisplay(-1)`).
+ * 2. Recebe frame via `usbProto.receiveFrame()`.
+ * 3. Se um frame válido foi recebido (`machState == RECEIVED`):
+ *    - Chama `parseMessage()` para decodificar.
+ *    - Executa ação conforme `netMessage.code`.
+ *    - Responde sempre `"002|OK"` após comandos de atualização.
+ *    - Atualiza mensagens em `dispArray` (conteúdo, tamanho, TTL, rolagem).
+ *    - Gera sinais sonoros quando uma digital for lida ou usuário/senha do teclado.
+ *    - Reinicia estado da máquina (`machState = START`).
+ *    - Reinicia o ciclo (`goto CONTINUE`) sem esperar o `delay`.
+ * 4. Se nada foi recebido → aguarda `LOOP_DELAY` antes do próximo ciclo.
+ *
+ * @note
+ * - O `goto CONTINUE` garante responsividade, reiniciando o ciclo imediatamente
+ *   após processar uma mensagem (sem aguardar `LOOP_DELAY`).
+ * - O uso de `atualizaDisplay(3)` no caso `ATTENDEE` deixa a linha 3 mais
+ *   responsiva a eventos de digitação no teclado.
+ * - A comunicação usa `usbProto`, responsável por framing com caracteres de escape.
+ *
+ * @see atualizaDisplay
+ * @see parseMessage
+ */
 void loop() 
 {
  CONTINUE: 
