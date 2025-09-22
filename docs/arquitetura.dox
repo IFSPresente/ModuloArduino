@@ -1,0 +1,27 @@
+/**
+ * @page protocolo_serial Protocolo Serial e Fluxo de Controle
+ * @brief Comunicação entre a TV-Box e o Arduino Nano.
+ *
+ * O diagrama abaixo mostra o fluxo típico de mensagens e ações:
+ *
+ * @dot
+ * digraph fluxo {
+ *   rankdir=LR;
+ *   node [shape=box, style=rounded, fontname="Helvetica"];
+ *
+ *   tvbox    [label="TV-Box"];
+ *   arduino  [label="Arduino Nano"];
+ *   display  [label="Display LCD"];
+ *   buzzer   [label="Buzzer"];
+ *
+ *   tvbox -> arduino [label="Mensagem serial <code, msg, TTL>"];
+ *   arduino -> display [label="Atualiza linha correspondente"];
+ *   arduino -> buzzer  [label="Feedback sonoro (SUCCESS / FAIL)"];
+ *   arduino -> tvbox   [label="Resposta '002|OK' ou dados de PING"];
+ * }
+ * @enddot
+ *
+ * @see loop()
+ * @see atualizaDisplay()
+ * @see parseMessage()
+ */

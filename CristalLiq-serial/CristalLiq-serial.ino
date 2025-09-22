@@ -1,31 +1,4 @@
 /**
- * @mainpage Módulo Arduino - CristalLiq
- *
- * @section intro_sec Introdução
- * Este módulo implementa a comunicação entre o _display_ de cristal líquido
- * e o Arduino via porta serial sobre USB, utilizando a classe `SerialProtocol` para cuidar da transmissão dos quadros.
- *
- * @section features_sec Funcionalidades
- * - Recepção de comandos da TV-Box por meio  de protocolo serial sobre USB.
- * - Exibição das mensagens no _display_ LCD de 4 linhas.
- * - Emissão de sinais sonoros via _buzzer_.
- * - Ajuste e leitura do RTC.
- *
- * @section arch_sec Arquitetura
- * O sistema é dividido em:
- * - `CristalLiq-serial.ino`: ponto de entrada e lógica principal.
- * - `frame.h/.cpp`: implementação da classe SerialProtocol.
- * - `SerialProtocol`: protocolo de comunicação _master/slave_ por serial sobre USB.
- *
- * @section usage_sec Uso
- * 1. Carregar o código no Arduino Nano com o Arduino IDE.
- * 2. Conectar o _display_ LCD de 4 linhas, o _buzzer_ e o RTC.
- *
- * @section img_sec Máquina de Estado do protocolo
- * !![Máquina de Estados](MaquinaEstadoProtocolo.png) 
- */
-
-/**
 * @file CristalLiq-serial.ino
 * @brief O Arduino Nano gerencia a exibição no Display de quatro linhas, o acionamento do _buzzer_ e o ajuste e leitura do RTC.
 * 
