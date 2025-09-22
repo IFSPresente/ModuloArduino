@@ -1,0 +1,7 @@
+<map id="copiaN" name="copiaN">
+<area shape="rect" id="Node000001" title="Copia um trecho de uma string de origem para um buffer de destino, ajustando posição inicial e preenc..." alt="" coords="275,5,341,31"/>
+<area shape="rect" id="Node000002" href="$CristalLiq-serial_8ino.html#a03c938c23e2eba81d9cdae2eae52aeb5" title="Atualiza o conteúdo exibido no display LCD linha a linha." alt="" coords="104,5,227,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
+<area shape="rect" id="Node000003" href="$CristalLiq-serial_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Loop principal do firmware." alt="" coords="5,5,56,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
+</map>

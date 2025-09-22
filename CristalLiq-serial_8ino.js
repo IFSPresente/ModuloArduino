@@ -19,8 +19,14 @@ var CristalLiq_serial_8ino =
     [ "SPEAKER", "CristalLiq-serial_8ino.html#a99ab171b0b50109a6d50f1b9a5e88f26", null ],
     [ "SUCCESS", "CristalLiq-serial_8ino.html#aa90cac659d18e8ef6294c7ae337f6b58", null ],
     [ "TIME", "CristalLiq-serial_8ino.html#a078b6c12f1ac6819cecef90ab5870276", null ],
+    [ "atualizaDisplay", "CristalLiq-serial_8ino.html#a03c938c23e2eba81d9cdae2eae52aeb5", null ],
+    [ "copiaN", "CristalLiq-serial_8ino.html#a48843d919506d0d897ff1fbf86448110", null ],
+    [ "loop", "CristalLiq-serial_8ino.html#afe461d27b9c48d5921c00d521181f12f", null ],
+    [ "parseMessage", "CristalLiq-serial_8ino.html#a7b10d8ce17e310e857423a407e4d1250", null ],
+    [ "setup", "CristalLiq-serial_8ino.html#a4fc01d736fe50cf5b977f755b675f11d", null ],
     [ "dispArray", "CristalLiq-serial_8ino.html#a795151f055a96eb58c8ecdf82a8c9a77", null ],
     [ "netMessage", "CristalLiq-serial_8ino.html#a420f122736aa560ba7cdaeece4e69f20", null ],
     [ "uptime", "CristalLiq-serial_8ino.html#ada266441835f6c84df287080413b8c3f", null ],
-    [ "usbProto", "CristalLiq-serial_8ino.html#ae342651406e7075073526a83d6391857", null ]
+    [ "usbProto", "CristalLiq-serial_8ino.html#ae342651406e7075073526a83d6391857", null ],
+    [ "VERSION", "CristalLiq-serial_8ino.html#acd4e5399668aabc70f012e800d5e6329", null ]
 ];

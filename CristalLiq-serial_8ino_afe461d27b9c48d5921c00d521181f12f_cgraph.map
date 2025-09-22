@@ -1,0 +1,9 @@
+<map id="loop" name="loop">
+<area shape="rect" id="Node000001" title="Loop principal do firmware." alt="" coords="5,31,56,56"/>
+<area shape="rect" id="Node000002" href="$CristalLiq-serial_8ino.html#a03c938c23e2eba81d9cdae2eae52aeb5" title="Atualiza o conteúdo exibido no display LCD linha a linha." alt="" coords="104,5,227,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,36,90,30,91,35,57,41"/>
+<area shape="rect" id="Node000004" href="$CristalLiq-serial_8ino.html#a7b10d8ce17e310e857423a407e4d1250" title="Interpreta a mensagem recebida pela serial USB e atualiza a estrutura global netMessage." alt="" coords="107,55,223,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="57,45,94,52,93,57,56,50"/>
+<area shape="rect" id="Node000003" href="$CristalLiq-serial_8ino.html#a48843d919506d0d897ff1fbf86448110" title="Copia um trecho de uma string de origem para um buffer de destino, ajustando posição inicial e preenc..." alt="" coords="275,5,341,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,15,261,15,261,21,227,21"/>
+</map>
