@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['módulo_20arduino_20cristalliq_0',['Módulo Arduino - CristalLiq',['../index.html',1,'']]]
+  ['de_20controle_0',['Protocolo Serial e Fluxo de Controle',['../protocolo_serial.html',1,'']]]
 ];

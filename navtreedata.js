@@ -26,6 +26,7 @@ var NAVTREE =
 [
   [ "ModuloArduino", "index.html", [
     [ "Módulo Arduino - CristalLiq", "index.html", "index" ],
+    [ "Protocolo Serial e Fluxo de Controle", "protocolo_serial.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

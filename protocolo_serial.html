@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ModuloArduino: Módulo Arduino - CristalLiq</title>
+<title>ModuloArduino: Protocolo Serial e Fluxo de Controle</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('protocolo_serial.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,42 +90,20 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Módulo Arduino - CristalLiq </div></div>
+  <div class="headertitle"><div class="title">Protocolo Serial e Fluxo de Controle</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
-Introdução</h1>
-<p>Este módulo implementa a comunicação entre o <em>display</em> de cristal líquido e o Arduino via porta serial sobre USB, utilizando a classe <code><a class="el" href="classSerialProtocol.html">SerialProtocol</a></code> para cuidar da transmissão dos quadros.</p>
-<h1><a class="anchor" id="features_sec"></a>
-Funcionalidades</h1>
-<ul>
-<li>Recepção de comandos da TV-Box por meio de protocolo serial sobre USB.</li>
-<li>Exibição das mensagens no <em>display</em> LCD de 4 linhas.</li>
-<li>Emissão de sinais sonoros via <em>buzzer</em>.</li>
-<li>Ajuste e leitura do RTC.</li>
-</ul>
-<h1><a class="anchor" id="arch_sec"></a>
-Arquitetura</h1>
-<p>O sistema é dividido em:</p><ul>
-<li><code><a class="el" href="CristalLiq-serial_8ino.html" title="O Arduino Nano gerencia a exibição no Display de quatro linhas, o acionamento do buzzer e o ajuste e ...">CristalLiq-serial.ino</a></code>: ponto de entrada e lógica principal.</li>
-<li><code><a class="el" href="frame_8h_source.html">frame.h</a>/.cpp</code>: implementação da classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>.</li>
-<li><code><a class="el" href="classSerialProtocol.html">SerialProtocol</a></code>: protocolo de comunicação <em>master/slave</em> por serial sobre USB.</li>
-<li>Para mais detalhes sobre o fluxo de mensagens, veja a página: <a class="el" href="protocolo_serial.html">Protocolo Serial e Fluxo de Controle</a></li>
-</ul>
-<h1><a class="anchor" id="usage_sec"></a>
-Uso</h1>
-<ol type="1">
-<li>Carregar o código no Arduino Nano com o Arduino IDE.</li>
-<li>Conectar o <em>display</em> LCD de 4 linhas, o <em>buzzer</em> e o RTC.</li>
-</ol>
-<h1><a class="anchor" id="img_sec"></a>
-Máquina de Estado do protocolo</h1>
-<div class="image">
-<img src="MaquinaEstadoProtocolo.png" alt=""/>
-<div class="caption">
-Máquina de Estados</div></div>
- </div></div><!-- PageDoc -->
-</div><!-- contents -->
+<div class="textblock"><p>Comunicação entre a TV-Box e o Arduino Nano.</p>
+<p>O diagrama abaixo mostra o fluxo típico de mensagens e ações:</p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_1.svg" width="1164" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="CristalLiq-serial_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Loop principal do firmware.">loop()</a> </dd>
+<dd>
+<a class="el" href="CristalLiq-serial_8ino.html#a03c938c23e2eba81d9cdae2eae52aeb5" title="Atualiza o conteúdo exibido no display LCD linha a linha.">atualizaDisplay()</a> </dd>
+<dd>
+<a class="el" href="CristalLiq-serial_8ino.html#a7b10d8ce17e310e857423a407e4d1250" title="Interpreta a mensagem recebida pela serial USB e atualiza a estrutura global netMessage.">parseMessage()</a> </dd></dl>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
