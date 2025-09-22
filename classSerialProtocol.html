@@ -97,34 +97,227 @@ $(document).ready(function(){initNavTree('classSerialProtocol.html',''); initRes
   <div class="headertitle"><div class="title">SerialProtocol Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Gerencia a comunicação serial no protocolo master/slave usado pela TV-Box.  
+ <a href="classSerialProtocol.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="frame_8h_source.html">frame.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5348b3afd55a31014ce6ada19a55b294" id="r_a5348b3afd55a31014ce6ada19a55b294"><td class="memItemLeft" align="right" valign="top"><a id="a5348b3afd55a31014ce6ada19a55b294" name="a5348b3afd55a31014ce6ada19a55b294"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveFrame</b> ()</td></tr>
+<tr class="memitem:a1d526821cb05ce70e0f01d847546c8c6" id="r_a1d526821cb05ce70e0f01d847546c8c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialProtocol.html#a1d526821cb05ce70e0f01d847546c8c6">SerialProtocol</a> ()</td></tr>
+<tr class="memdesc:a1d526821cb05ce70e0f01d847546c8c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construtor padrão da classe <a class="el" href="classSerialProtocol.html" title="Gerencia a comunicação serial no protocolo master/slave usado pela TV-Box.">SerialProtocol</a>.  <br /></td></tr>
+<tr class="separator:a1d526821cb05ce70e0f01d847546c8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b73bbdf2f4e1098e245cf55a2802d5b" id="r_a5b73bbdf2f4e1098e245cf55a2802d5b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialProtocol.html#a5b73bbdf2f4e1098e245cf55a2802d5b">~SerialProtocol</a> ()</td></tr>
+<tr class="memdesc:a5b73bbdf2f4e1098e245cf55a2802d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destrutor virtual.  <br /></td></tr>
+<tr class="separator:a5b73bbdf2f4e1098e245cf55a2802d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5348b3afd55a31014ce6ada19a55b294" id="r_a5348b3afd55a31014ce6ada19a55b294"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialProtocol.html#a5348b3afd55a31014ce6ada19a55b294">receiveFrame</a> ()</td></tr>
+<tr class="memdesc:a5348b3afd55a31014ce6ada19a55b294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recebe um frame da TV-Box e atualiza o buffer <code>receivedChars</code>.  <br /></td></tr>
 <tr class="separator:a5348b3afd55a31014ce6ada19a55b294"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c9c0198d4dcd49daae510211c02a360" id="r_a1c9c0198d4dcd49daae510211c02a360"><td class="memItemLeft" align="right" valign="top"><a id="a1c9c0198d4dcd49daae510211c02a360" name="a1c9c0198d4dcd49daae510211c02a360"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendFrame</b> (char *message)</td></tr>
+<tr class="memitem:a1c9c0198d4dcd49daae510211c02a360" id="r_a1c9c0198d4dcd49daae510211c02a360"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialProtocol.html#a1c9c0198d4dcd49daae510211c02a360">sendFrame</a> (char *message)</td></tr>
+<tr class="memdesc:a1c9c0198d4dcd49daae510211c02a360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envia uma mensagem via serial para a TV-Box.  <br /></td></tr>
 <tr class="separator:a1c9c0198d4dcd49daae510211c02a360"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d1f14dd8d42c0eddbaab83e22e87760" id="r_a9d1f14dd8d42c0eddbaab83e22e87760"><td class="memItemLeft" align="right" valign="top"><a id="a9d1f14dd8d42c0eddbaab83e22e87760" name="a9d1f14dd8d42c0eddbaab83e22e87760"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeAccentMarker</b> (char *str)</td></tr>
+<tr class="memitem:a9d1f14dd8d42c0eddbaab83e22e87760" id="r_a9d1f14dd8d42c0eddbaab83e22e87760"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialProtocol.html#a9d1f14dd8d42c0eddbaab83e22e87760">removeAccentMarker</a> (char *str)</td></tr>
+<tr class="memdesc:a9d1f14dd8d42c0eddbaab83e22e87760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove acentos e caracteres especiais de uma string.  <br /></td></tr>
 <tr class="separator:a9d1f14dd8d42c0eddbaab83e22e87760"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc8cce1b0a2fe9c857aa0f63527439bf" id="r_adc8cce1b0a2fe9c857aa0f63527439bf"><td class="memItemLeft" align="right" valign="top"><a id="adc8cce1b0a2fe9c857aa0f63527439bf" name="adc8cce1b0a2fe9c857aa0f63527439bf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBaudRate</b> (int baudRate)</td></tr>
+<tr class="memitem:adc8cce1b0a2fe9c857aa0f63527439bf" id="r_adc8cce1b0a2fe9c857aa0f63527439bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialProtocol.html#adc8cce1b0a2fe9c857aa0f63527439bf">setBaudRate</a> (int baudRate)</td></tr>
+<tr class="memdesc:adc8cce1b0a2fe9c857aa0f63527439bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura a taxa de transmissão serial.  <br /></td></tr>
 <tr class="separator:adc8cce1b0a2fe9c857aa0f63527439bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aac2dbba35b3ee3ae966c94dfe1978911" id="r_aac2dbba35b3ee3ae966c94dfe1978911"><td class="memItemLeft" align="right" valign="top"><a id="aac2dbba35b3ee3ae966c94dfe1978911" name="aac2dbba35b3ee3ae966c94dfe1978911"></a>
 byte&#160;</td><td class="memItemRight" valign="bottom"><b>machState</b></td></tr>
+<tr class="memdesc:aac2dbba35b3ee3ae966c94dfe1978911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado atual da máquina de recepção. <br /></td></tr>
 <tr class="separator:aac2dbba35b3ee3ae966c94dfe1978911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b7f9be28536ed20f50106008fe4d7a4" id="r_a4b7f9be28536ed20f50106008fe4d7a4"><td class="memItemLeft" align="right" valign="top"><a id="a4b7f9be28536ed20f50106008fe4d7a4" name="a4b7f9be28536ed20f50106008fe4d7a4"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><b>receivedChars</b> [MAX_PROTOCOL_MESSAGE+1]</td></tr>
+<tr class="memdesc:a4b7f9be28536ed20f50106008fe4d7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer para armazenar a mensagem recebida. <br /></td></tr>
 <tr class="separator:a4b7f9be28536ed20f50106008fe4d7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecf858e93cba525d9cb4ebfb0f380279" id="r_aecf858e93cba525d9cb4ebfb0f380279"><td class="memItemLeft" align="right" valign="top"><a id="aecf858e93cba525d9cb4ebfb0f380279" name="aecf858e93cba525d9cb4ebfb0f380279"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><b>sendChars</b> [MAX_PROTOCOL_MESSAGE+1]</td></tr>
+<tr class="memdesc:aecf858e93cba525d9cb4ebfb0f380279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer para armazenar a mensagem a ser enviada. <br /></td></tr>
 <tr class="separator:aecf858e93cba525d9cb4ebfb0f380279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Gerencia a comunicação serial no protocolo master/slave usado pela TV-Box. </p>
+<p>Esta classe é responsável por:</p><ul>
+<li>Receber e montar mensagens do tipo <code>&lt;codigo,mensagem,TTL&gt;</code>.</li>
+<li>Enviar mensagens serializadas para a TV-Box.</li>
+<li>Remover caracteres de acento que podem interferir na comunicação.</li>
+<li>Configurar a taxa de transmissão serial.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>O buffer <code>receivedChars</code> armazena a mensagem recebida, <code>sendChars</code> armazena a mensagem a ser enviada. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1d526821cb05ce70e0f01d847546c8c6" name="a1d526821cb05ce70e0f01d847546c8c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d526821cb05ce70e0f01d847546c8c6">&#9670;&#160;</a></span>SerialProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SerialProtocol::SerialProtocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construtor padrão da classe <a class="el" href="classSerialProtocol.html" title="Gerencia a comunicação serial no protocolo master/slave usado pela TV-Box.">SerialProtocol</a>. </p>
+<p>Inicializa os buffers e coloca a máquina em estado START. </p>
+
+</div>
+</div>
+<a id="a5b73bbdf2f4e1098e245cf55a2802d5b" name="a5b73bbdf2f4e1098e245cf55a2802d5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b73bbdf2f4e1098e245cf55a2802d5b">&#9670;&#160;</a></span>~SerialProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SerialProtocol::~SerialProtocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destrutor virtual. </p>
+<p>Permite que classes derivadas possam sobrescrever o destrutor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5348b3afd55a31014ce6ada19a55b294" name="a5348b3afd55a31014ce6ada19a55b294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5348b3afd55a31014ce6ada19a55b294">&#9670;&#160;</a></span>receiveFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialProtocol::receiveFrame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recebe um frame da TV-Box e atualiza o buffer <code>receivedChars</code>. </p>
+<p>A máquina de estados interpreta os caracteres de início/fim e caracteres de escape.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classSerialProtocol.html#aac2dbba35b3ee3ae966c94dfe1978911" title="Estado atual da máquina de recepção.">machState</a> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSerialProtocol_a5348b3afd55a31014ce6ada19a55b294_icgraph.svg" width="319" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a9d1f14dd8d42c0eddbaab83e22e87760" name="a9d1f14dd8d42c0eddbaab83e22e87760"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d1f14dd8d42c0eddbaab83e22e87760">&#9670;&#160;</a></span>removeAccentMarker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialProtocol::removeAccentMarker </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove acentos e caracteres especiais de uma string. </p>
+<p>Isso evita problemas de transmissão serial com caracteres acentuados.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>String a ser processada. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSerialProtocol_a9d1f14dd8d42c0eddbaab83e22e87760_icgraph.svg" width="488" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a1c9c0198d4dcd49daae510211c02a360" name="a1c9c0198d4dcd49daae510211c02a360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c9c0198d4dcd49daae510211c02a360">&#9670;&#160;</a></span>sendFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialProtocol::sendFrame </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Envia uma mensagem via serial para a TV-Box. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Mensagem a ser enviada. Deve estar formatada de acordo com o protocolo <code>&lt;codigo,mensagem,TTL&gt;</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSerialProtocol_a1c9c0198d4dcd49daae510211c02a360_icgraph.svg" width="302" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="adc8cce1b0a2fe9c857aa0f63527439bf" name="adc8cce1b0a2fe9c857aa0f63527439bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc8cce1b0a2fe9c857aa0f63527439bf">&#9670;&#160;</a></span>setBaudRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialProtocol::setBaudRate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>baudRate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configura a taxa de transmissão serial. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">baudRate</td><td>Taxa em bauds (ex.: 9600, 115200). </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSerialProtocol_adc8cce1b0a2fe9c857aa0f63527439bf_icgraph.svg" width="320" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>CristalLiq-serial/<a class="el" href="frame_8h_source.html">frame.h</a></li>
 <li>CristalLiq-serial/<b>frame.cpp</b></li>

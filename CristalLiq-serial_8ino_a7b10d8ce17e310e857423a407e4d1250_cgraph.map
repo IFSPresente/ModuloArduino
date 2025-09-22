@@ -1,0 +1,5 @@
+<map id="parseMessage" name="parseMessage">
+<area shape="rect" id="Node000001" title="Interpreta a mensagem recebida pela serial USB e atualiza a estrutura global netMessage." alt="" coords="5,13,121,38"/>
+<area shape="rect" id="Node000002" href="$classSerialProtocol.html#a9d1f14dd8d42c0eddbaab83e22e87760" title="Remove acentos e caracteres especiais de uma string." alt="" coords="169,5,384,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,23,156,23,156,28,122,28"/>
+</map>

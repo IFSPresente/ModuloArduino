@@ -213,7 +213,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>O Arduino Nano gerencia a exibição no <a class="el" href="structDisplay.html" title="Representa o estado de uma linha do display LCD.">Display</a> de quatro linhas, o acionamento do <em>buzzer</em> e o ajuste e leitura do RTC. </p>
-<p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt;'. No interior do quadro é possível usar o caracter de escape para: '&lt;', '&gt;' e '\'. A semântica das mensagens é específica para a aplicação IFSPresente. Há nove tipos de mensagens emitidas pela TV-Box.</p><ul>
+<p>O Arduino Nano comunica-se por via serial sobre USB com a TV-Box. O protocolo de comunicação está na classe <a class="el" href="classSerialProtocol.html" title="Gerencia a comunicação serial no protocolo master/slave usado pela TV-Box.">SerialProtocol</a>. São mensagens de quadro encapsuladas com os caracteres '&lt;' e '&gt;'. No interior do quadro é possível usar o caracter de escape para: '&lt;', '&gt;' e '\'. A semântica das mensagens é específica para a aplicação IFSPresente. Há nove tipos de mensagens emitidas pela TV-Box.</p><ul>
 <li>&lt;100|0|0&gt; &rarr; PING <br  />
 </li>
 <li>&lt;200|TEXTO|TIMEOUT&gt; &rarr; TIME (Linha 0, para sala, data e hora) <br  />
@@ -680,7 +680,7 @@ Estrutura do loop</h3>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph.svg" width="347" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph.svg" width="582" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -709,6 +709,11 @@ Here is the call graph for this function:</div>
 <li>Converte o terceiro campo em milissegundos para o tempo de vida (<code>netMessage.TTL</code>).</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>A função não recebe parâmetros nem retorna valor. Atua diretamente sobre as variáveis globais <code>usbProto</code> e <code>netMessage</code>. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino_a7b10d8ce17e310e857423a407e4d1250_cgraph.svg" width="390" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -744,6 +749,11 @@ Here is the caller graph for this function:</div>
 <li>Ajusta os tamanhos das mensagens padrão em <code>dispArray</code>.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Esta função não recebe parâmetros e não retorna valor. É executada uma única vez antes de <code><a class="el" href="CristalLiq-serial_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Loop principal do firmware.">loop()</a></code>. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph.svg" width="320" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

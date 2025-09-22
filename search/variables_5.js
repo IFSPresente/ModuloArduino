@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['startposition_0',['startPosition',['../structDisplay.html#a552fa397a37dd2a8d69da0c4b3c9e476',1,'Display']]]
+  ['receivedchars_0',['receivedChars',['../classSerialProtocol.html#a4b7f9be28536ed20f50106008fe4d7a4',1,'SerialProtocol']]]
 ];

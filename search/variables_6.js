@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['toprint_0',['toPrint',['../structDisplay.html#ac28c8904cd267c495a7ba8c4d900410d',1,'Display']]],
-  ['ttl_1',['ttl',['../structProtocolMessage.html#a1ee3deb71b8e77ea46eaca690037d26b',1,'ProtocolMessage::TTL'],['../structDisplay.html#ab0723cc5d5efae503b835d73de2c8395',1,'Display::TTL']]]
+  ['sendchars_0',['sendChars',['../classSerialProtocol.html#aecf858e93cba525d9cb4ebfb0f380279',1,'SerialProtocol']]],
+  ['startposition_1',['startPosition',['../structDisplay.html#a552fa397a37dd2a8d69da0c4b3c9e476',1,'Display']]]
 ];
