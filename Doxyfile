@@ -14,8 +14,8 @@ DOXYFILE_ENCODING      = UTF-8
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
 
-INPUT                  = src include .
-FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.ino
+INPUT                  = src include docs .
+FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.ino *.dox
 EXTENSION_MAPPING      = ino=C++
 RECURSIVE              = YES
 
