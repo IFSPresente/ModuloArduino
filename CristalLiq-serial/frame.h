@@ -38,7 +38,7 @@ class SerialProtocol {
 		* @brief Buffer para armazenar a mensagem recebida.
 		*/
 		char receivedChars[MAX_PROTOCOL_MESSAGE+1];
-    
+
 		/**
 		* @brief Buffer para armazenar a mensagem a ser enviada.
 		*/
@@ -58,8 +58,8 @@ class SerialProtocol {
 		/**
 		* @brief Recebe um frame da TV-Box e atualiza o buffer `receivedChars`.
 		*
-		* A máquina de estados interpreta os caracteres de início/fim
-		* e caracteres de escape.
+		* A máquina de estados interpreta os caracteres de início/fim, '<' e '>'
+		* e caracteres de escape'\<', '\>'e '\\'.
 		*
 		* @see machState
 		*/
@@ -68,13 +68,13 @@ class SerialProtocol {
 		* @brief Envia uma mensagem via serial para a TV-Box.
 		*
 		* @param message Mensagem a ser enviada. Deve estar formatada
-		*                de acordo com o protocolo `<codigo,mensagem,TTL>`.
+		*                de acordo com as regras de framing e de alguma semântica de mensagem. No IFSPresente é `<codigo,mensagem,TTL>`.
 		*/
 		void sendFrame(char* message);
 		/**
 		* @brief Remove acentos e caracteres especiais de uma string.
 		*
-		* Isso evita problemas de transmissão serial com caracteres acentuados.
+		* Isso evita problemas de impressão no display que não aceita caracteres acentuados.
 		*
 		* @param str String a ser processada.
 		*/

@@ -42,9 +42,9 @@
 #define SPEAKER      400 /**< Linha 2: nome do professor responsável pela aula em curso. */
 #define ATTENDEE     500 /**< Linha 3: estudante que aponta sua presença. */
 #define SUCCESS      600 /**< Beep de sucesso no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. */
-#define FAIL         601 /**< Beep de falha no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. . */
+#define FAIL         601 /**< Beep de falha no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. */
 #define SETTIME      700 /**< Comando para ajustar data/hora do RTC ligado ao Arduino. */
-#define GETTIME      701 /**< Comando para solicitar data/hora do RTC ligado ao Arduino. */
+#define GETTIME      701 /**< Comando para solicitar data/hora do RTC ligado ao Arduino, além da temperatura. */
 /** @} */
 
 
@@ -55,14 +55,14 @@
  * Essas constantes são relacionadas aos endereços I2C e demais ajustes sobre os dispositivos externos.
 * @{
 */
-#define BUZZER      2               /**< Pino digital ligado ao _buzzer_ */
-#define COL        20               /**< Serve para definir o numero de colunas do display utilizado */ 
-#define ROW         4               /**< Serve para definir o numero de linhas do display utilizado  */
+#define BUZZER      2               /**< Pino digital ligado ao _buzzer_. */
+#define COL        20               /**< Serve para definir o numero de colunas do display utilizado. */ 
+#define ROW         4               /**< Serve para definir o numero de linhas do display utilizado.  */
 #define ADDRESS  0x27               /**< Serve para definir o endereço do display. */
-#define DISPLAY_UPDATE_DELAY 500    /**< Tempo em milissegundos em que um texto é exibido numa linha do display antes de sofrer _scroll_ */ 
-#define LOOP_DELAY            10    /**< Tempo em que o loop principal do código do Arduino dorme à espera de uma mensagem */
-#define KEEP_AT_ZERO           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de iniciar o _scroll_ */
-#define KEEP_AT_LAST           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de reiniciar o _scroll_ */
+#define DISPLAY_UPDATE_DELAY 500    /**< Tempo em milissegundos em que um texto é exibido numa linha do display antes de sofrer _scroll_. */ 
+#define LOOP_DELAY            10    /**< Tempo em que o loop principal do código do Arduino dorme à espera de uma mensagem. */
+#define KEEP_AT_ZERO           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de iniciar o _scroll_. */
+#define KEEP_AT_LAST           1    /**< Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de reiniciar o _scroll_. */
 /** @} */
 
 /**
@@ -99,7 +99,7 @@ struct Display {
   int defaultMessageSize;              /**< Tamanho da mensagem padrão. */
   int startPosition;                   /**< Posição inicial na mensagem a partir da qual imprime-se no display. */
   byte keepAtZeroPosition;             /**< Quando o trecho inicial da mensagem está sendo impresso, permanece por um tempo maior nesse estado. */
-  unsigned long TTL;                    /**< Tempo de vida da mensagem em milissegundos. Após esse período, retorna à mensagem _default_ */
+  unsigned long TTL;                    /**< Tempo de vida da mensagem em milissegundos. Após esse período, retorna à mensagem _default_. */
 };
 
 /**
@@ -228,8 +228,8 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
  * - Caso contrário → mostra `message` com rolagem.
  *
  * @param[in] lines Índice da linha a ser atualizada:
- *                  - `-1` → atualiza todas as linhas, para efeito de rolagem horizontal, então faz a cada DISPLAY_UPDATE_DELAY.
- *                  - `0..ROW-1` → atualiza apenas a linha especificada, e faz automaticamente independentemente de DISPLAY_UPDATE_DELAY para ter boa responsividade.
+ *                  - `-1` → atualiza todas as linhas, para efeito de rolagem horizontal, então faz a cada DISPLAY_UPDATE_DELAY milissegundos.
+ *                  - `0..ROW-1` → atualiza apenas a linha especificada e faz automaticamente independentemente de DISPLAY_UPDATE_DELAY ter expirado, alcançando boa responsividade.
  *
  * @note
  * - Usa `copiaN()` para preencher o buffer de exibição (`toPrint`).
@@ -386,7 +386,7 @@ void setup()
  * - **SUCCESS (600):** _feedback_ sonoro curto (registro aceito, pode ser usuário/senha correto ou leitura correta de impressão digital).
  * - **FAIL (601):** _feedback_ sonoro duplo (registro rejeitado).
  * - **SETTIME (700):** Define a data e hora do RTC do Arduino.
- * - **GETTIME (701):** Obtém a data/hora do RTC, além da temperatura em Celcius.
+ * - **GETTIME (701):** Obtém a data/hora do RTC, além da temperatura em graus Celcius.
  *
  * ### Estrutura do loop
  * 1. Atualiza o display (`atualizaDisplay(-1)`).
@@ -406,7 +406,7 @@ void setup()
  *   após processar uma mensagem (sem aguardar `LOOP_DELAY`).
  * - O uso de `atualizaDisplay(3)` no caso `ATTENDEE` deixa a linha 3 mais
  *   responsiva a eventos de digitação no teclado.
- * - A comunicação usa `usbProto`, responsável por framing com caracteres de escape.
+ * - A comunicação usa `usbProto`, que mantém a decodificação de um frame recebido.
  *
  * @see atualizaDisplay
  * @see parseMessage
