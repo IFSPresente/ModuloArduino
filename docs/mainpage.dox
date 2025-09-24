@@ -10,6 +10,7 @@
  * - Exibição das mensagens no _display_ LCD de 4 linhas.
  * - Emissão de sinais sonoros via _buzzer_.
  * - Ajuste e leitura do RTC.
+ * - Leitura da temperatura.
  *
  * @section arch_sec Arquitetura
  * O sistema é dividido em:
