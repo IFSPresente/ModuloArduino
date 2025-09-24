@@ -2,7 +2,7 @@
 #define FRAME_H
 
 #include <Arduino.h>
-#define MAX_STRING    80
+#define MAX_STRING    50
 #define MAX_PROTOCOL_MESSAGE  MAX_STRING + 4  // ddd,maior string já desprezados os caracteres de inicio e fim '<' e '>'
 
 /**

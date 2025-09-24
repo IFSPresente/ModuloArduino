@@ -26,6 +26,7 @@
 
 #include <Wire.h>              // Biblioteca utilizada para fazer a comunicação com o I2C
 #include <LiquidCrystal_I2C.h> // Biblioteca utilizada para fazer a comunicação com o display 20x4 
+#include <RTClib.h>            // Biblioteca utilizada para ajuste e leitura de 
 #include "frame.h"             // Implementação da classe SerialProtocol
 
 /** 
@@ -144,7 +145,11 @@ char auxStr[80];
  */
 unsigned long uptime;
 
+RTC_DS3231 rtc;  //Objeto rtc da classe DS3231
 LiquidCrystal_I2C lcd(ADDRESS,COL,ROW); // Chamada da funcação LiquidCrystal para ser usada com o I2C
+
+DateTime now;
+
 
 /**
  * @var SerialProtocol usbProto
@@ -152,9 +157,7 @@ LiquidCrystal_I2C lcd(ADDRESS,COL,ROW); // Chamada da funcação LiquidCrystal p
  */
 SerialProtocol usbProto;
 
-/*****************************************************************************/
-/*                                                                           */
-/*****************************************************************************/
+
 /**
  * @brief Copia um trecho de uma string de origem para um buffer de destino,
  *        ajustando posição inicial e preenchendo com espaços em branco, se necessário.
@@ -169,15 +172,21 @@ SerialProtocol usbProto;
  * e o finalizador `'\0'` é adicionado ao fim.
  *
  * @param[out] dest       Buffer de destino (receberá a string copiada).
- * @param[in]  sizeDest   Tamanho do buffer de destino (número de caracteres visíveis no display).
+ * @param[in]  sizeDest   Tamanho da string que ficará em `dest`, número de caracteres visíveis no display. O buffer `dest` precisa ter pelo menos (sizeDest+1) bytes.
  * @param[in]  origem     String de origem.
  * @param[in]  sizeOrigem Tamanho da string de origem.
  * @param[in]  start      Posição inicial na string de origem a partir da qual
- *                        a cópia deve começar (pode ser ajustada internamente).
+ *                        a cópia deve começar (pode ser ajustada internamente pelo algoritmo).
  *
  * @note Usa `min(sizeDest, sizeOrigem)` para calcular o máximo de caracteres a copiar.
  *       O destino é sempre terminado em `'\0'`.
+ *
+ * @section img_sec Máquina de Estado do protocolo
+ * \image html img/copiaParcialDeString.png "Detalhamento do Algoritmo"
  */
+/*****************************************************************************/
+/*                                                                           */
+/*****************************************************************************/
 void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start ) {
 
      //Se a string cabe no display, não pode iniciar impressão para além da posição zero
@@ -203,9 +212,6 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
      dest[sizeDest] = '\0';    
 }
 
-/*****************************************************************************/
-/*                                                                           */
-/*****************************************************************************/
 /**
  * @brief Atualiza o conteúdo exibido no display LCD linha a linha.
  *
@@ -235,6 +241,9 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
  * - Depois, incrementa `startPosition` até o limite calculado,
  *   com espera em `KEEP_AT_LAST` no final.
  */
+/*****************************************************************************/
+/*                                                                           */
+/*****************************************************************************/
 void atualizaDisplay(int lines) {
    static unsigned long nextUpdate = 0;
    unsigned long currentTime = millis();
@@ -289,9 +298,6 @@ void atualizaDisplay(int lines) {
    }
 }
 
-/*****************************************************************************/
-/*                                                                           */
-/*****************************************************************************/
 /**
  * @brief Interpreta a mensagem recebida pela serial USB e atualiza a estrutura global netMessage.
  *
@@ -305,6 +311,9 @@ void atualizaDisplay(int lines) {
  * @note A função não recebe parâmetros nem retorna valor.
  *       Atua diretamente sobre as variáveis globais `usbProto` e `netMessage`.
  */
+/*****************************************************************************/
+/*                                                                           */
+/*****************************************************************************/
 void parseMessage() {
     char * strtokIndx; // this is used by strtok() as an index
     usbProto.removeAccentMarker(usbProto.receivedChars);
@@ -318,9 +327,7 @@ void parseMessage() {
     netMessage.TTL = atoi(strtokIndx);
 }
 
-/*****************************************************************************/
-/*                                                                           */
-/*****************************************************************************/
+
 /**
  * @brief Configuração inicial do sistema Arduino.
  *
@@ -340,8 +347,13 @@ void parseMessage() {
  * @note Esta função não recebe parâmetros e não retorna valor.
  *       É executada uma única vez antes de `loop()`.
  */
-void setup() //Incia o display
+/*****************************************************************************/
+/*                                                                           */
+/*****************************************************************************/
+void setup() 
 {  
+  Wire.begin();
+  rtc.begin();
   pinMode(BUZZER, OUTPUT);
   lcd.init();           // Serve para iniciar a comunicação com o display já conectado
   //lcd.backlight();    // Serve para ligar a luz do display
@@ -358,9 +370,6 @@ void setup() //Incia o display
   }
 }
 
-/*****************************************************************************/
-/*                                                                           */
-/*****************************************************************************/
 /**
  * @brief Loop principal do firmware.
  *
@@ -399,6 +408,9 @@ void setup() //Incia o display
  * @see atualizaDisplay
  * @see parseMessage
  */
+/*****************************************************************************/
+/*                                                                           */
+/*****************************************************************************/
 void loop() 
 {
  CONTINUE: 
@@ -408,11 +420,14 @@ void loop()
     parseMessage();
     switch (netMessage.code) {
       case PING:
+        //Retorna "001|UPTIME em milissegundos|VERSION"
         strReply[0] = '\0';
         strcat(strReply, "001|");
         uptime = millis();
         itoa( uptime, auxStr, 10);
         strcat(strReply, auxStr);
+        strcat(strReply, "|");
+        strcat(strReply, VERSION);
         usbProto.sendFrame(strReply);
         break;
       case TIME:
@@ -430,7 +445,6 @@ void loop()
         dispArray[1].TTL = millis() + netMessage.TTL;
         dispArray[1].startPosition = 0;
         dispArray[1].keepAtZeroPosition = KEEP_AT_ZERO;
-        
         break;
       case SPEAKER:
         usbProto.sendFrame("002|OK");
@@ -449,6 +463,49 @@ void loop()
         dispArray[3].keepAtZeroPosition = KEEP_AT_ZERO;
         atualizaDisplay(3);  //Atualiza forçosamente só a linha 3, o display fica mais responsivo a tecladas rápidas.
         break;
+
+      case SETTIME:
+        usbProto.sendFrame("002|OK");
+        char * strtokIndx; // this is used by strtok() as an index
+        unsigned int year;
+        byte month;
+        byte day;
+        byte hour;
+        byte minute;
+        byte second;
+        strtokIndx = strtok(netMessage.message,":");      // Pega o ano
+        year = atoi(strtokIndx);
+        strtokIndx = strtok(NULL, ":");                   // Pega o mês
+        month = atoi(strtokIndx);
+        strtokIndx = strtok(NULL, ":");                   // Pega o dia
+        day = atoi(strtokIndx);
+        strtokIndx = strtok(NULL, ":");                   // Pega a hora
+        hour = atoi(strtokIndx);      
+        strtokIndx = strtok(NULL, ":");                   // Pega o minuto
+        minute = atoi(strtokIndx); 
+        strtokIndx = strtok(NULL, ":");                   // Pega o segundo
+        second = atoi(strtokIndx);        
+        rtc.adjust(DateTime(year, month, day, hour, minute, second));          
+        break;  
+          
+      case GETTIME:
+        strReply[0] = '\0';
+        now = rtc.now();  
+        char tempBuf[12]; 
+        //Converte um float para uma string
+        dtostrf(rtc.getTemperature(), 4, 2, tempBuf); // largura=4, casas decimais=2
+        
+        sprintf(strReply, "003|%04d:%02d:%02d:%02d:%02d:%02d|%s",now.year(),
+                                                                 now.month(),
+                                                                 now.day(),
+                                                                 now.hour(),
+                                                                 now.minute(),
+                                                                 now.second(),
+                                                                 tempBuf);
+                                                                 
+        usbProto.sendFrame(strReply);
+        break;
+        
       case SUCCESS:
         usbProto.sendFrame("002|OK");
         tone(BUZZER,1000,150);
