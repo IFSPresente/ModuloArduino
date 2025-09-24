@@ -54,7 +54,7 @@ var NAVTREEINDEX0 =
 "index.html":[],
 "index.html#arch_sec":[0,2],
 "index.html#features_sec":[0,1],
-"index.html#img_sec":[0,4],
+"index.html#img_sec1":[0,4],
 "index.html#intro_sec":[0,0],
 "index.html#usage_sec":[0,3],
 "pages.html":[],
