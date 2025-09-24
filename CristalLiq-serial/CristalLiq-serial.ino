@@ -198,7 +198,7 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
          //Recua ao ponto de cópia que preenche completamente o display
          if (start > sizeOrigem - sizeDest)
             start = sizeOrigem-sizeDest;
-     }
+     } 
 
      //Quantidade máxima de caracteres copiados da origem
      int maxToCopy = min(sizeDest, sizeOrigem);
