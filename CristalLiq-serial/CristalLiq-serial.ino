@@ -183,7 +183,7 @@ SerialProtocol usbProto;
  *
  *
  * @section img_sec2 Exemplo de Funcionamento
- * \image html img/copiaParcialDeStrings.png "Detalhamento do Algoritmo"
+ * \image html img/copiaParcialDeString.png "Detalhamento do Algoritmo"
  */
 /*****************************************************************************/
 /*                                                                           */
