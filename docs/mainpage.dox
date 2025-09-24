@@ -23,6 +23,6 @@
  * 1. Carregar o código no Arduino Nano com o Arduino IDE.
  * 2. Conectar o _display_ LCD de 4 linhas, o _buzzer_ e o RTC.
  *
- * @section img_sec Máquina de Estado do protocolo
+ * @section img_sec1 Máquina de Estado do protocolo
  * \image html img/MaquinaEstadoProtocolo.png "Máquina de Estados"
  */
