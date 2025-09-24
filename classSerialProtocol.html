@@ -231,7 +231,7 @@ Máquina de Estados</div></div>
 </div><div class="memdoc">
 
 <p>Recebe um frame da TV-Box e atualiza o buffer <code>receivedChars</code>. </p>
-<p>A máquina de estados interpreta os caracteres de início/fim e caracteres de escape.</p>
+<p>A máquina de estados interpreta os caracteres de início/fim, '&lt;' e '&gt;' e caracteres de escape'&lt;', '&gt;'e '\'.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classSerialProtocol.html#aac2dbba35b3ee3ae966c94dfe1978911" title="Estado atual da máquina de recepção.">machState</a> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -258,7 +258,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Remove acentos e caracteres especiais de uma string. </p>
-<p>Isso evita problemas de transmissão serial com caracteres acentuados.</p>
+<p>Isso evita problemas de impressão no display que não aceita caracteres acentuados.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>String a ser processada. </td></tr>
@@ -292,7 +292,7 @@ Here is the caller graph for this function:</div>
 <p>Envia uma mensagem via serial para a TV-Box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>Mensagem a ser enviada. Deve estar formatada de acordo com o protocolo <code>&lt;codigo,mensagem,TTL&gt;</code>. </td></tr>
+    <tr><td class="paramname">message</td><td>Mensagem a ser enviada. Deve estar formatada de acordo com as regras de framing e de alguma semântica de mensagem. No IFSPresente é <code>&lt;codigo,mensagem,TTL&gt;</code>. </td></tr>
   </table>
   </dd>
 </dl>

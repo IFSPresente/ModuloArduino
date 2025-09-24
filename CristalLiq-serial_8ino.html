@@ -286,7 +286,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Pino digital ligado ao <em>buzzer</em> </p>
+<p>Pino digital ligado ao <em>buzzer</em>. </p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Serve para definir o numero de colunas do display utilizado </p>
+<p>Serve para definir o numero de colunas do display utilizado. </p>
 
 </div>
 </div>
@@ -316,7 +316,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tempo em milissegundos em que um texto é exibido numa linha do display antes de sofrer <em>scroll</em> </p>
+<p>Tempo em milissegundos em que um texto é exibido numa linha do display antes de sofrer <em>scroll</em>. </p>
 
 </div>
 </div>
@@ -331,7 +331,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Beep de falha no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. . </p>
+<p>Beep de falha no registro, seja por leitor biométrico de digital ou por senha no teclado numérico. </p>
 
 </div>
 </div>
@@ -346,7 +346,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Comando para solicitar data/hora do RTC ligado ao Arduino. </p>
+<p>Comando para solicitar data/hora do RTC ligado ao Arduino, além da temperatura. </p>
 
 </div>
 </div>
@@ -361,7 +361,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de reiniciar o <em>scroll</em> </p>
+<p>Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de reiniciar o <em>scroll</em>. </p>
 
 </div>
 </div>
@@ -376,7 +376,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de iniciar o <em>scroll</em> </p>
+<p>Quando um texto é exibido numa linha do display, deve ficar um tempo a mais antes de iniciar o <em>scroll</em>. </p>
 
 </div>
 </div>
@@ -406,7 +406,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tempo em que o loop principal do código do Arduino dorme à espera de uma mensagem </p>
+<p>Tempo em que o loop principal do código do Arduino dorme à espera de uma mensagem. </p>
 
 </div>
 </div>
@@ -436,7 +436,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Serve para definir o numero de linhas do display utilizado <br  />
+<p>Serve para definir o numero de linhas do display utilizado. <br  />
  </p>
 
 </div>
@@ -531,8 +531,8 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">lines</td><td>Índice da linha a ser atualizada:<ul>
-<li><code>-1</code> → atualiza todas as linhas, para efeito de rolagem horizontal, então faz a cada DISPLAY_UPDATE_DELAY.</li>
-<li><code>0..ROW-1</code> → atualiza apenas a linha especificada, e faz automaticamente independentemente de DISPLAY_UPDATE_DELAY para ter boa responsividade.</li>
+<li><code>-1</code> → atualiza todas as linhas, para efeito de rolagem horizontal, então faz a cada DISPLAY_UPDATE_DELAY milissegundos.</li>
+<li><code>0..ROW-1</code> → atualiza apenas a linha especificada e faz automaticamente independentemente de DISPLAY_UPDATE_DELAY ter expirado, alcançando boa responsividade.</li>
 </ul>
 </td></tr>
   </table>
@@ -664,7 +664,7 @@ Here is the caller graph for this function:</div>
 <li><b>SUCCESS (600):</b> <em>feedback</em> sonoro curto (registro aceito, pode ser usuário/senha correto ou leitura correta de impressão digital).</li>
 <li><b>FAIL (601):</b> <em>feedback</em> sonoro duplo (registro rejeitado).</li>
 <li><b>SETTIME (700):</b> Define a data e hora do RTC do Arduino.</li>
-<li><b>GETTIME (701):</b> Obtém a data/hora do RTC, além da temperatura em Celcius.</li>
+<li><b>GETTIME (701):</b> Obtém a data/hora do RTC, além da temperatura em graus Celcius.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md1"></a>
 Estrutura do loop</h3>
@@ -686,7 +686,7 @@ Estrutura do loop</h3>
 <dl class="section note"><dt>Note</dt><dd><ul>
 <li>O <code>goto CONTINUE</code> garante responsividade, reiniciando o ciclo imediatamente após processar uma mensagem (sem aguardar <code>LOOP_DELAY</code>).</li>
 <li>O uso de <code>atualizaDisplay(3)</code> no caso <code>ATTENDEE</code> deixa a linha 3 mais responsiva a eventos de digitação no teclado.</li>
-<li>A comunicação usa <code>usbProto</code>, responsável por framing com caracteres de escape.</li>
+<li>A comunicação usa <code>usbProto</code>, que mantém a decodificação de um frame recebido.</li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="CristalLiq-serial_8ino.html#a03c938c23e2eba81d9cdae2eae52aeb5" title="Atualiza o conteúdo exibido no display LCD linha a linha.">atualizaDisplay</a> </dd>
