@@ -197,12 +197,12 @@ Variables</h2></td></tr>
 <tr class="memitem:acd4e5399668aabc70f012e800d5e6329" id="r_acd4e5399668aabc70f012e800d5e6329"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CristalLiq-serial_8ino.html#acd4e5399668aabc70f012e800d5e6329">VERSION</a> = &quot;1.0&quot;</td></tr>
 <tr class="memdesc:acd4e5399668aabc70f012e800d5e6329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Versão do <em>firmware</em>.  <br /></td></tr>
 <tr class="separator:acd4e5399668aabc70f012e800d5e6329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40d2c39a0e92c065f0ce6ba15395355d" id="r_a40d2c39a0e92c065f0ce6ba15395355d"><td class="memItemLeft" align="right" valign="top"><a id="a40d2c39a0e92c065f0ce6ba15395355d" name="a40d2c39a0e92c065f0ce6ba15395355d"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>strReply</b> [80]</td></tr>
-<tr class="separator:a40d2c39a0e92c065f0ce6ba15395355d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9081f84b1a60463e5ac1116533cc3a5" id="r_ab9081f84b1a60463e5ac1116533cc3a5"><td class="memItemLeft" align="right" valign="top"><a id="ab9081f84b1a60463e5ac1116533cc3a5" name="ab9081f84b1a60463e5ac1116533cc3a5"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>auxStr</b> [80]</td></tr>
-<tr class="separator:ab9081f84b1a60463e5ac1116533cc3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa7887b5baca9a867c996f4aa044712c" id="r_aaa7887b5baca9a867c996f4aa044712c"><td class="memItemLeft" align="right" valign="top"><a id="aaa7887b5baca9a867c996f4aa044712c" name="aaa7887b5baca9a867c996f4aa044712c"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>strReply</b> [MAX_STRING+1]</td></tr>
+<tr class="separator:aaa7887b5baca9a867c996f4aa044712c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3435d27776fc86f0b20de11fcd5663a4" id="r_a3435d27776fc86f0b20de11fcd5663a4"><td class="memItemLeft" align="right" valign="top"><a id="a3435d27776fc86f0b20de11fcd5663a4" name="a3435d27776fc86f0b20de11fcd5663a4"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>auxStr</b> [MAX_STRING+1]</td></tr>
+<tr class="separator:a3435d27776fc86f0b20de11fcd5663a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada266441835f6c84df287080413b8c3f" id="r_ada266441835f6c84df287080413b8c3f"><td class="memItemLeft" align="right" valign="top"><a id="ada266441835f6c84df287080413b8c3f" name="ada266441835f6c84df287080413b8c3f"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></td></tr>
 <tr class="memdesc:ada266441835f6c84df287080413b8c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tempo em que o Arduino está ligado em milissegundos. <br /></td></tr>
@@ -234,7 +234,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
 </li>
 <li>&lt;601|0|0&gt; &rarr; FAIL (Beep de falha no registro)</li>
 <li>&lt;700|YYYY:MM:DD:HH:MM:SS|0&gt; &rarr; SETTIME (Define a hora do RTC)</li>
-<li>&lt;701|0|0&gt; &rarr; GETTIME (Recebe a hora do RTC) <br  />
+<li>&lt;701|0|0&gt; &rarr; GETTIME (Recebe a hora do RTC, além da temperatura) <br  />
 </li>
 </ul>
 <p>O Arduino responde com três tipos de mensagens.</p><ul>
@@ -522,7 +522,7 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
 <p>Esta função gerencia a exibição de mensagens no display, considerando:</p><ul>
 <li><b>Tempo mínimo entre atualizações</b> (usando <code>millis()</code> e <code>DISPLAY_UPDATE_DELAY</code>).</li>
 <li><b>Mensagens temporárias (TTL)</b>: quando expiram, voltam para a mensagem padrão.</li>
-<li><b>Rolagem (scroll)</b>: caso a mensagem seja maior que o número de colunas (<code>COL</code>), realiza deslocamento progressivo, mantendo o início por alguns ciclos (<code>KEEP_AT_ZERO</code>) antes de avançar.</li>
+<li><b>Rolagem horizontal (scroll)</b>: caso a mensagem seja maior que o número de colunas (<code>COL</code>), realiza deslocamento progressivo, mantendo o início por alguns ciclos (<code>KEEP_AT_ZERO</code>) antes de avançar.</li>
 </ul>
 <p>O comportamento difere conforme a mensagem ativa:</p><ul>
 <li>Se <code>dispArray[i].TTL</code> expirou → mostra <code>defaultMessage</code> com rolagem.</li>
@@ -531,8 +531,8 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">lines</td><td>Índice da linha a ser atualizada:<ul>
-<li><code>-1</code> → atualiza todas as linhas.</li>
-<li><code>0..ROW-1</code> → atualiza apenas a linha especificada.</li>
+<li><code>-1</code> → atualiza todas as linhas, para efeito de rolagem horizontal, então faz a cada DISPLAY_UPDATE_DELAY.</li>
+<li><code>0..ROW-1</code> → atualiza apenas a linha especificada, e faz automaticamente independentemente de DISPLAY_UPDATE_DELAY para ter boa responsividade.</li>
 </ul>
 </td></tr>
   </table>
@@ -661,8 +661,10 @@ Here is the caller graph for this function:</div>
 <li><b>LECTURE_NAME (300):</b> atualiza linha 1 (nome da palestra).</li>
 <li><b>SPEAKER (400):</b> atualiza linha 2 (nome do professor).</li>
 <li><b>ATTENDEE (500):</b> atualiza linha 3 (participante) e força atualização imediata.</li>
-<li><b>SUCCESS (600):</b> feedback sonoro curto (registro aceito).</li>
-<li><b>FAIL (601):</b> feedback sonoro duplo (registro rejeitado).</li>
+<li><b>SUCCESS (600):</b> <em>feedback</em> sonoro curto (registro aceito, pode ser usuário/senha correto ou leitura correta de impressão digital).</li>
+<li><b>FAIL (601):</b> <em>feedback</em> sonoro duplo (registro rejeitado).</li>
+<li><b>SETTIME (700):</b> Define a data e hora do RTC do Arduino.</li>
+<li><b>GETTIME (701):</b> Obtém a data/hora do RTC, além da temperatura em Celcius.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md1"></a>
 Estrutura do loop</h3>
