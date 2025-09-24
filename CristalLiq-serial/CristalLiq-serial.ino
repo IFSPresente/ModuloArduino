@@ -181,7 +181,7 @@ SerialProtocol usbProto;
  * @note Usa `min(sizeDest, sizeOrigem)` para calcular o máximo de caracteres a copiar.
  *       O destino é sempre terminado em `'\0'`.
  *
- * @section img_sec Máquina de Estado do protocolo
+ * @section img_sec Exemplo de Funcionamento
  * \image html img/copiaParcialDeString.png "Detalhamento do Algoritmo"
  */
 /*****************************************************************************/
