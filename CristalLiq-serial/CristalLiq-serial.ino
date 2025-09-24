@@ -14,7 +14,7 @@
 * * <600|0|0>                        &rarr;  SUCCESS (Beep de sucesso no registro)            
 * * <601|0|0>                        &rarr;  FAIL (Beep de falha no registro)
 * * <700|YYYY:MM:DD:HH:MM:SS|0>      &rarr;  SETTIME (Define a hora do RTC)
-* * <701|0|0>                        &rarr;  GETTIME (Recebe a hora do RTC)     
+* * <701|0|0>                        &rarr;  GETTIME (Recebe a hora do RTC, além da temperatura)     
 *
 * O Arduino responde com três tipos de mensagens.
 * * <001|uptime em milissegundos|versão de firmware>  &rarr; Resposta ao ping 
@@ -136,8 +136,8 @@ Display dispArray[ROW] = {
  */
 const char* VERSION = "1.0";
 
-char strReply[80];
-char auxStr[80];
+char strReply[MAX_STRING + 1];
+char auxStr[MAX_STRING + 1];
 
 /**
  * @var unsigned long uptime
@@ -219,7 +219,7 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
  * Esta função gerencia a exibição de mensagens no display, considerando:
  * - **Tempo mínimo entre atualizações** (usando `millis()` e `DISPLAY_UPDATE_DELAY`).
  * - **Mensagens temporárias (TTL)**: quando expiram, voltam para a mensagem padrão.
- * - **Rolagem (scroll)**: caso a mensagem seja maior que o número de colunas (`COL`),
+ * - **Rolagem horizontal (scroll)**: caso a mensagem seja maior que o número de colunas (`COL`),
  *   realiza deslocamento progressivo, mantendo o início por alguns ciclos
  *   (`KEEP_AT_ZERO`) antes de avançar.
  *
@@ -228,8 +228,8 @@ void copiaN(char dest[], int sizeDest, char origem[], int sizeOrigem, int start 
  * - Caso contrário → mostra `message` com rolagem.
  *
  * @param[in] lines Índice da linha a ser atualizada:
- *                  - `-1` → atualiza todas as linhas.
- *                  - `0..ROW-1` → atualiza apenas a linha especificada.
+ *                  - `-1` → atualiza todas as linhas, para efeito de rolagem horizontal, então faz a cada DISPLAY_UPDATE_DELAY.
+ *                  - `0..ROW-1` → atualiza apenas a linha especificada, e faz automaticamente independentemente de DISPLAY_UPDATE_DELAY para ter boa responsividade.
  *
  * @note
  * - Usa `copiaN()` para preencher o buffer de exibição (`toPrint`).
@@ -251,11 +251,11 @@ void atualizaDisplay(int lines) {
    bool updateNext = false;
   
   if (currentTime < nextUpdate) {  //Avalia se o tempo de realizar update no display expirou
-      if (usbProto.machState != RECEIVED)
+      if (usbProto.machState != SerialProtocol::RECEIVED)
           return;
   }
 
-   if (usbProto.machState != RECEIVED)
+   if (usbProto.machState != SerialProtocol::RECEIVED)
        nextUpdate = currentTime + DISPLAY_UPDATE_DELAY;
 
    for (int i = 0; i < ROW; i++) {
@@ -383,8 +383,10 @@ void setup()
  * - **LECTURE_NAME (300):** atualiza linha 1 (nome da palestra).
  * - **SPEAKER (400):** atualiza linha 2 (nome do professor).
  * - **ATTENDEE (500):** atualiza linha 3 (participante) e força atualização imediata.
- * - **SUCCESS (600):** feedback sonoro curto (registro aceito).
- * - **FAIL (601):** feedback sonoro duplo (registro rejeitado).
+ * - **SUCCESS (600):** _feedback_ sonoro curto (registro aceito, pode ser usuário/senha correto ou leitura correta de impressão digital).
+ * - **FAIL (601):** _feedback_ sonoro duplo (registro rejeitado).
+ * - **SETTIME (700):** Define a data e hora do RTC do Arduino.
+ * - **GETTIME (701):** Obtém a data/hora do RTC, além da temperatura em Celcius.
  *
  * ### Estrutura do loop
  * 1. Atualiza o display (`atualizaDisplay(-1)`).
@@ -417,7 +419,7 @@ void loop()
  CONTINUE: 
   atualizaDisplay(-1);        //Atualiza todas as linhas do display
   usbProto.receiveFrame();
-  if (usbProto.machState == RECEIVED) {
+  if (usbProto.machState == SerialProtocol::RECEIVED) {
     parseMessage();
     switch (netMessage.code) {
       case PING:
@@ -431,32 +433,36 @@ void loop()
         strcat(strReply, VERSION);
         usbProto.sendFrame(strReply);
         break;
+
       case TIME:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         strcpy(dispArray[0].message, netMessage.message);
         dispArray[0].messageSize = strlen(netMessage.message);
         dispArray[0].TTL = millis() + netMessage.TTL;
         dispArray[0].startPosition = 0;
         dispArray[0].keepAtZeroPosition = KEEP_AT_ZERO;
         break;
+
       case LECTURE_NAME:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         strcpy(dispArray[1].message, netMessage.message);
         dispArray[1].messageSize = strlen(netMessage.message);
         dispArray[1].TTL = millis() + netMessage.TTL;
         dispArray[1].startPosition = 0;
         dispArray[1].keepAtZeroPosition = KEEP_AT_ZERO;
         break;
+
       case SPEAKER:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         strcpy(dispArray[2].message, netMessage.message);
         dispArray[2].messageSize = strlen(netMessage.message);
         dispArray[2].TTL = millis() + netMessage.TTL;
         dispArray[2].startPosition = 0;
         dispArray[2].keepAtZeroPosition = KEEP_AT_ZERO;
         break;
+
       case ATTENDEE:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         strcpy(dispArray[3].message, netMessage.message);
         dispArray[3].messageSize = strlen(netMessage.message);
         dispArray[3].TTL = millis() + netMessage.TTL;
@@ -466,7 +472,7 @@ void loop()
         break;
 
       case SETTIME:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         char * strtokIndx; // this is used by strtok() as an index
         unsigned int year;
         byte month;
@@ -502,23 +508,23 @@ void loop()
                                                                  now.hour(),
                                                                  now.minute(),
                                                                  now.second(),
-                                                                 tempBuf);
-                                                                 
+                                                                 tempBuf);                                                     
         usbProto.sendFrame(strReply);
         break;
         
       case SUCCESS:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         tone(BUZZER,1000,150);
         break;
+
       case FAIL:
-        usbProto.sendFrame("002|OK");
+        usbProto.sendFrame("002|OK|");
         tone(BUZZER,2000,150);
         delay(300);
         tone(BUZZER,2000,150);
         break;
     }
-    usbProto.machState = START;
+    usbProto.machState = SerialProtocol::START;
     goto CONTINUE;
   }
   delay(LOOP_DELAY);  // delay do loop principal

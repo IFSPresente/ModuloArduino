@@ -6,12 +6,6 @@
 #define MAX_PROTOCOL_MESSAGE  MAX_STRING + 4  // ddd,maior string já desprezados os caracteres de inicio e fim '<' e '>'
 
 /**
- * @enum machineState
- * @brief Estados possíveis da máquina de recepção de frames.
- */
-enum machineState {START, RECEIVING, ESCAPE, RECEIVED};
-
-/**
  * @class SerialProtocol
  * @brief Gerencia a comunicação serial no protocolo master/slave usado pela TV-Box.
  *
@@ -29,14 +23,22 @@ enum machineState {START, RECEIVING, ESCAPE, RECEIVED};
  */
 class SerialProtocol {
 	public:
+    /**
+    * @enum machineState
+    * @brief Estados possíveis da máquina de recepção de frames.
+    */
+    enum machineState {START, RECEIVING, ESCAPE, RECEIVED};
+
 		/**
 		* @brief Estado atual da máquina de recepção.
 		*/
 		byte machState;
+
 		/**
 		* @brief Buffer para armazenar a mensagem recebida.
 		*/
 		char receivedChars[MAX_PROTOCOL_MESSAGE+1];
+    
 		/**
 		* @brief Buffer para armazenar a mensagem a ser enviada.
 		*/
