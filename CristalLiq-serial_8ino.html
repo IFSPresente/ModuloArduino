@@ -102,11 +102,12 @@ $(document).ready(function(){initNavTree('CristalLiq-serial_8ino.html',''); init
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Wire.h&gt;</code><br />
 <code>#include &lt;LiquidCrystal_I2C.h&gt;</code><br />
+<code>#include &lt;RTClib.h&gt;</code><br />
 <code>#include &quot;frame.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CristalLiq-serial.ino:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino__incl.svg" width="350" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino__incl.svg" width="448" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -206,6 +207,12 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>auxStr</b> [80]</td><
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>uptime</b></td></tr>
 <tr class="memdesc:ada266441835f6c84df287080413b8c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tempo em que o Arduino está ligado em milissegundos. <br /></td></tr>
 <tr class="separator:ada266441835f6c84df287080413b8c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa042f998806fcdedab1794cebbeaad3" id="r_afa042f998806fcdedab1794cebbeaad3"><td class="memItemLeft" align="right" valign="top"><a id="afa042f998806fcdedab1794cebbeaad3" name="afa042f998806fcdedab1794cebbeaad3"></a>
+RTC_DS3231&#160;</td><td class="memItemRight" valign="bottom"><b>rtc</b></td></tr>
+<tr class="separator:afa042f998806fcdedab1794cebbeaad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac023874b2154eac7297a7575008605fe" id="r_ac023874b2154eac7297a7575008605fe"><td class="memItemLeft" align="right" valign="top"><a id="ac023874b2154eac7297a7575008605fe" name="ac023874b2154eac7297a7575008605fe"></a>
+DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>now</b></td></tr>
+<tr class="separator:ac023874b2154eac7297a7575008605fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae342651406e7075073526a83d6391857" id="r_ae342651406e7075073526a83d6391857"><td class="memItemLeft" align="right" valign="top"><a id="ae342651406e7075073526a83d6391857" name="ae342651406e7075073526a83d6391857"></a>
 <a class="el" href="classSerialProtocol.html">SerialProtocol</a>&#160;</td><td class="memItemRight" valign="bottom"><b>usbProto</b></td></tr>
 <tr class="memdesc:ae342651406e7075073526a83d6391857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe que implementa a transmissão e recepção de quadros pela serial sobre USB. <br /></td></tr>
@@ -609,15 +616,21 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Buffer de destino (receberá a string copiada). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sizeDest</td><td>Tamanho do buffer de destino (número de caracteres visíveis no display). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sizeDest</td><td>Tamanho da string que ficará em <code>dest</code>, número de caracteres visíveis no display. O buffer <code>dest</code> precisa ter pelo menos (sizeDest+1) bytes. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">origem</td><td>String de origem. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">sizeOrigem</td><td>Tamanho da string de origem. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">start</td><td>Posição inicial na string de origem a partir da qual a cópia deve começar (pode ser ajustada internamente).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">start</td><td>Posição inicial na string de origem a partir da qual a cópia deve começar (pode ser ajustada internamente pelo algoritmo).</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Usa <code>min(sizeDest, sizeOrigem)</code> para calcular o máximo de caracteres a copiar. O destino é sempre terminado em &lsquo;&rsquo;\0'`. </dd></dl>
-<div class="dynheader">
+<dl class="section note"><dt>Note</dt><dd>Usa <code>min(sizeDest, sizeOrigem)</code> para calcular o máximo de caracteres a copiar. O destino é sempre terminado em &lsquo;&rsquo;\0'`.</dd></dl>
+<h1><a class="anchor" id="img_sec"></a>
+Máquina de Estado do protocolo</h1>
+<div class="image">
+<img src="copiaParcialDeString.png" alt=""/>
+<div class="caption">
+Detalhamento do Algoritmo</div></div>
+ <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="CristalLiq-serial_8ino_a48843d919506d0d897ff1fbf86448110_icgraph.svg" width="347" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
@@ -775,7 +788,7 @@ Here is the call graph for this function:</div>
 <div class="line">                          {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;Sem reserva de palestrante&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, 0, 0, 0, <a class="code hl_define" href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a>, 0},</div>
 <div class="line">                          {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;Aguardando Registro&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, 0, 0, 0, <a class="code hl_define" href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a>, 0}</div>
 <div class="line">                         }</div>
-<div class="ttc" id="aCristalLiq-serial_8ino_html_a7a4d81092b3cee058ef3cfc9a322f174"><div class="ttname"><a href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a></div><div class="ttdeci">#define KEEP_AT_ZERO</div><div class="ttdef"><b>Definition</b> CristalLiq-serial.ino:63</div></div>
+<div class="ttc" id="aCristalLiq-serial_8ino_html_a7a4d81092b3cee058ef3cfc9a322f174"><div class="ttname"><a href="CristalLiq-serial_8ino.html#a7a4d81092b3cee058ef3cfc9a322f174">KEEP_AT_ZERO</a></div><div class="ttdeci">#define KEEP_AT_ZERO</div><div class="ttdef"><b>Definition</b> CristalLiq-serial.ino:64</div></div>
 </div><!-- fragment -->
 <p>Informações para as quatro linhas do <a class="el" href="structDisplay.html" title="Representa o estado de uma linha do display LCD.">Display</a>. </p>
 <p>Contém as quatro linhas do display LCD. Cada posição tem:</p><ul>
